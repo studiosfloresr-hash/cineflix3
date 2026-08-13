@@ -24,6 +24,7 @@ body{
     font-family:Arial,Helvetica,sans-serif;
 }
 
+
 /* =========================
    HEADER
 ========================= */
@@ -73,6 +74,7 @@ body{
     color:#e50914;
 }
 
+
 /* =========================
    BUSCADOR
 ========================= */
@@ -103,6 +105,7 @@ body{
 .search-box input:focus{
     border-color:#e50914;
 }
+
 
 /* =========================
    HERO
@@ -162,6 +165,7 @@ body{
     margin-bottom:25px;
 }
 
+
 /* =========================
    BOTONES
 ========================= */
@@ -186,11 +190,14 @@ body{
     text-decoration:none;
 
     transition:.2s;
+
+    cursor:pointer;
 }
 
 .btn-play{
     background:#fff;
     color:#000;
+    border:0;
 }
 
 .btn-play:hover{
@@ -206,6 +213,7 @@ body{
 .btn-info:hover{
     background:#666;
 }
+
 
 /* =========================
    CONTENIDO
@@ -226,6 +234,7 @@ main{
     margin-bottom:20px;
 }
 
+
 /* =========================
    GRID
 ========================= */
@@ -235,6 +244,7 @@ main{
     grid-template-columns:repeat(4,1fr);
     gap:18px;
 }
+
 
 /* =========================
    TARJETA
@@ -268,21 +278,26 @@ main{
     z-index:10;
 }
 
+
 /* =========================
-   PORTADA FIJA
+   PORTADAS FIJAS
 ========================= */
 
 .movie-image{
     position:relative;
+
     width:100%;
     aspect-ratio:16/9;
+
     overflow:hidden;
+
     background:#181818;
 }
 
 .movie-image img{
     width:100%;
     height:100%;
+
     display:block;
 
     object-fit:cover;
@@ -293,6 +308,7 @@ main{
 .movie:hover .movie-image img{
     transform:scale(1.06);
 }
+
 
 /* =========================
    PLAY
@@ -332,6 +348,7 @@ main{
     font-size:22px;
 }
 
+
 /* =========================
    INFORMACIÓN
 ========================= */
@@ -350,6 +367,7 @@ main{
     color:#888;
     font-size:12px;
 }
+
 
 /* =========================
    BADGE
@@ -373,6 +391,7 @@ main{
     font-weight:bold;
 }
 
+
 /* =========================
    SIN RESULTADOS
 ========================= */
@@ -388,6 +407,141 @@ main{
 
     font-size:18px;
 }
+
+
+/* =========================
+   MODAL DEL REPRODUCTOR
+========================= */
+
+.video-modal{
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    z-index:5000;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:25px;
+
+    background:rgba(0,0,0,.88);
+
+    backdrop-filter:blur(5px);
+}
+
+.video-modal.active{
+    display:flex;
+}
+
+
+/* CAJA DEL REPRODUCTOR */
+
+.video-box{
+    position:relative;
+
+    width:min(1100px,95vw);
+
+    background:#000;
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.95);
+}
+
+
+/* VIDEO */
+
+.video-frame{
+    position:relative;
+
+    width:100%;
+
+    aspect-ratio:16/9;
+
+    background:#000;
+}
+
+.video-frame iframe{
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    border:0;
+}
+
+
+/* TÍTULO */
+
+.video-title{
+    display:flex;
+
+    align-items:center;
+    justify-content:space-between;
+
+    gap:15px;
+
+    padding:13px 16px;
+
+    background:#111;
+}
+
+.video-title h2{
+    color:#fff;
+
+    font-size:18px;
+
+    font-weight:bold;
+}
+
+
+/* BOTÓN CERRAR */
+
+.close-video{
+    width:38px;
+    height:38px;
+
+    flex-shrink:0;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border:0;
+
+    border-radius:50%;
+
+    background:#e50914;
+
+    color:#fff;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.close-video:hover{
+    background:#b20710;
+
+    transform:scale(1.05);
+}
+
 
 /* =========================
    FOOTER
@@ -407,6 +561,7 @@ footer{
     font-size:13px;
 }
 
+
 /* =========================
    TABLET
 ========================= */
@@ -418,6 +573,7 @@ footer{
     }
 
 }
+
 
 /* =========================
    CELULAR
@@ -491,7 +647,35 @@ footer{
         font-size:14px;
     }
 
+
+    /* MODAL EN CELULAR */
+
+    .video-modal{
+        padding:12px;
+    }
+
+    .video-box{
+        width:100%;
+        border-radius:7px;
+    }
+
+    .video-title{
+        padding:10px 12px;
+    }
+
+    .video-title h2{
+        font-size:15px;
+    }
+
+    .close-video{
+        width:34px;
+        height:34px;
+
+        font-size:17px;
+    }
+
 }
+
 
 /* =========================
    CELULAR PEQUEÑO
@@ -520,9 +704,18 @@ footer{
         font-size:14px;
     }
 
+    .movies{
+        gap:9px;
+    }
+
+    .movie-info h3{
+        font-size:13px;
+    }
+
 }
 
 </style>
+
 </head>
 
 
@@ -538,6 +731,7 @@ footer{
     <div class="logo">
         CINEFLIX
     </div>
+
 
     <nav class="nav">
 
@@ -555,6 +749,7 @@ footer{
 
     </nav>
 
+
     <div class="search-box">
 
         <input
@@ -567,6 +762,7 @@ footer{
     </div>
 
 </header>
+
 
 
 <!-- =========================
@@ -584,25 +780,28 @@ footer{
             🎬 PELÍCULA DESTACADA
         </div>
 
+
         <h1>
             CINEFLIX
         </h1>
+
 
         <p>
             Disfruta de nuestras películas y descubre
             nuevas historias para disfrutar.
         </p>
 
+
         <div class="hero-buttons">
 
-            <a
-                href="https://www.youtube.com/watch?v=oezrSRPoZnY"
-                target="_blank"
-                rel="noopener noreferrer"
+            <button
+                type="button"
                 class="btn btn-play"
+                id="heroPlay"
             >
                 ▶ Ver ahora
-            </a>
+            </button>
+
 
             <a
                 href="#peliculas"
@@ -616,6 +815,7 @@ footer{
     </div>
 
 </section>
+
 
 
 <!-- =========================
@@ -645,12 +845,10 @@ footer{
 
         <!-- PELÍCULA 1 -->
 
-        <a
+        <article
             class="movie"
             data-title="Película 1"
-            href="https://www.youtube.com/watch?v=oezrSRPoZnY"
-            target="_blank"
-            rel="noopener noreferrer"
+            data-video="oezrSRPoZnY"
         >
 
             <div class="movie-image">
@@ -671,27 +869,36 @@ footer{
 
             </div>
 
+
             <div class="movie-info">
-                <h3>Película 1</h3>
-                <p>Película • HD</p>
+
+                <h3>
+                    Película 1
+                </h3>
+
+                <p>
+                    Película • HD
+                </p>
+
             </div>
 
-        </a>
+        </article>
+
 
 
         <!-- PELÍCULA 2 -->
 
-        <a
+        <article
             class="movie"
             data-title="Película 2"
-            href="https://www.youtube.com/watch?v=tTChOuwrxwk"
-            target="_blank"
-            rel="noopener noreferrer"
+            data-video="tTChOuwrxwk"
         >
 
             <div class="movie-image">
 
-                <span class="badge">NUEVO</span>
+                <span class="badge">
+                    NUEVO
+                </span>
 
                 <img
                     src="https://img.youtube.com/vi/tTChOuwrxwk/0.jpg"
@@ -705,27 +912,36 @@ footer{
 
             </div>
 
+
             <div class="movie-info">
-                <h3>Película 2</h3>
-                <p>Película • HD</p>
+
+                <h3>
+                    Película 2
+                </h3>
+
+                <p>
+                    Película • HD
+                </p>
+
             </div>
 
-        </a>
+        </article>
+
 
 
         <!-- PELÍCULA 3 -->
 
-        <a
+        <article
             class="movie"
             data-title="Película 3"
-            href="https://www.youtube.com/watch?v=gXJEHMWuIAo"
-            target="_blank"
-            rel="noopener noreferrer"
+            data-video="gXJEHMWuIAo"
         >
 
             <div class="movie-image">
 
-                <span class="badge">NUEVO</span>
+                <span class="badge">
+                    NUEVO
+                </span>
 
                 <img
                     src="https://img.youtube.com/vi/gXJEHMWuIAo/0.jpg"
@@ -739,27 +955,36 @@ footer{
 
             </div>
 
+
             <div class="movie-info">
-                <h3>Película 3</h3>
-                <p>Película • HD</p>
+
+                <h3>
+                    Película 3
+                </h3>
+
+                <p>
+                    Película • HD
+                </p>
+
             </div>
 
-        </a>
+        </article>
+
 
 
         <!-- PELÍCULA 4 -->
 
-        <a
+        <article
             class="movie"
             data-title="Película 4"
-            href="https://www.youtube.com/watch?v=vwwxe0lWomI"
-            target="_blank"
-            rel="noopener noreferrer"
+            data-video="vwwxe0lWomI"
         >
 
             <div class="movie-image">
 
-                <span class="badge">NUEVO</span>
+                <span class="badge">
+                    NUEVO
+                </span>
 
                 <img
                     src="https://img.youtube.com/vi/vwwxe0lWomI/0.jpg"
@@ -773,27 +998,36 @@ footer{
 
             </div>
 
+
             <div class="movie-info">
-                <h3>Película 4</h3>
-                <p>Película • HD</p>
+
+                <h3>
+                    Película 4
+                </h3>
+
+                <p>
+                    Película • HD
+                </p>
+
             </div>
 
-        </a>
+        </article>
+
 
 
         <!-- PELÍCULA 5 -->
 
-        <a
+        <article
             class="movie"
             data-title="Película 5"
-            href="https://www.youtube.com/watch?v=AdEoI4Q9Yis"
-            target="_blank"
-            rel="noopener noreferrer"
+            data-video="AdEoI4Q9Yis"
         >
 
             <div class="movie-image">
 
-                <span class="badge">NUEVO</span>
+                <span class="badge">
+                    NUEVO
+                </span>
 
                 <img
                     src="https://img.youtube.com/vi/AdEoI4Q9Yis/0.jpg"
@@ -807,27 +1041,36 @@ footer{
 
             </div>
 
+
             <div class="movie-info">
-                <h3>Película 5</h3>
-                <p>Película • HD</p>
+
+                <h3>
+                    Película 5
+                </h3>
+
+                <p>
+                    Película • HD
+                </p>
+
             </div>
 
-        </a>
+        </article>
+
 
 
         <!-- PELÍCULA 6 -->
 
-        <a
+        <article
             class="movie"
             data-title="Película 6"
-            href="https://www.youtube.com/watch?v=AwZYHTDvHc4"
-            target="_blank"
-            rel="noopener noreferrer"
+            data-video="AwZYHTDvHc4"
         >
 
             <div class="movie-image">
 
-                <span class="badge">NUEVO</span>
+                <span class="badge">
+                    NUEVO
+                </span>
 
                 <img
                     src="https://img.youtube.com/vi/AwZYHTDvHc4/0.jpg"
@@ -841,27 +1084,36 @@ footer{
 
             </div>
 
+
             <div class="movie-info">
-                <h3>Película 6</h3>
-                <p>Película • HD</p>
+
+                <h3>
+                    Película 6
+                </h3>
+
+                <p>
+                    Película • HD
+                </p>
+
             </div>
 
-        </a>
+        </article>
+
 
 
         <!-- PELÍCULA 7 -->
 
-        <a
+        <article
             class="movie"
             data-title="Película 7"
-            href="https://www.youtube.com/watch?v=9pEy9zzUjt8"
-            target="_blank"
-            rel="noopener noreferrer"
+            data-video="9pEy9zzUjt8"
         >
 
             <div class="movie-image">
 
-                <span class="badge">NUEVO</span>
+                <span class="badge">
+                    NUEVO
+                </span>
 
                 <img
                     src="https://img.youtube.com/vi/9pEy9zzUjt8/0.jpg"
@@ -875,27 +1127,36 @@ footer{
 
             </div>
 
+
             <div class="movie-info">
-                <h3>Película 7</h3>
-                <p>Película • HD</p>
+
+                <h3>
+                    Película 7
+                </h3>
+
+                <p>
+                    Película • HD
+                </p>
+
             </div>
 
-        </a>
+        </article>
+
 
 
         <!-- PELÍCULA 8 -->
 
-        <a
+        <article
             class="movie"
             data-title="Película 8"
-            href="https://www.youtube.com/watch?v=A_0dyyJL0mU"
-            target="_blank"
-            rel="noopener noreferrer"
+            data-video="A_0dyyJL0mU"
         >
 
             <div class="movie-image">
 
-                <span class="badge">NUEVO</span>
+                <span class="badge">
+                    NUEVO
+                </span>
 
                 <img
                     src="https://img.youtube.com/vi/A_0dyyJL0mU/0.jpg"
@@ -909,27 +1170,36 @@ footer{
 
             </div>
 
+
             <div class="movie-info">
-                <h3>Película 8</h3>
-                <p>Película • HD</p>
+
+                <h3>
+                    Película 8
+                </h3>
+
+                <p>
+                    Película • HD
+                </p>
+
             </div>
 
-        </a>
+        </article>
+
 
 
         <!-- PELÍCULA 9 -->
 
-        <a
+        <article
             class="movie"
             data-title="Película 9"
-            href="https://www.youtube.com/watch?v=-Ld2sE1aGc0"
-            target="_blank"
-            rel="noopener noreferrer"
+            data-video="-Ld2sE1aGc0"
         >
 
             <div class="movie-image">
 
-                <span class="badge">NUEVO</span>
+                <span class="badge">
+                    NUEVO
+                </span>
 
                 <img
                     src="https://img.youtube.com/vi/-Ld2sE1aGc0/0.jpg"
@@ -943,27 +1213,36 @@ footer{
 
             </div>
 
+
             <div class="movie-info">
-                <h3>Película 9</h3>
-                <p>Película • HD</p>
+
+                <h3>
+                    Película 9
+                </h3>
+
+                <p>
+                    Película • HD
+                </p>
+
             </div>
 
-        </a>
+        </article>
+
 
 
         <!-- PELÍCULA 10 -->
 
-        <a
+        <article
             class="movie"
             data-title="Película 10"
-            href="https://www.youtube.com/watch?v=RgfTg591iPg"
-            target="_blank"
-            rel="noopener noreferrer"
+            data-video="RgfTg591iPg"
         >
 
             <div class="movie-image">
 
-                <span class="badge">NUEVO</span>
+                <span class="badge">
+                    NUEVO
+                </span>
 
                 <img
                     src="https://img.youtube.com/vi/RgfTg591iPg/0.jpg"
@@ -977,27 +1256,36 @@ footer{
 
             </div>
 
+
             <div class="movie-info">
-                <h3>Película 10</h3>
-                <p>Película • HD</p>
+
+                <h3>
+                    Película 10
+                </h3>
+
+                <p>
+                    Película • HD
+                </p>
+
             </div>
 
-        </a>
+        </article>
+
 
 
         <!-- PELÍCULA 11 -->
 
-        <a
+        <article
             class="movie"
             data-title="Película 11"
-            href="https://www.youtube.com/watch?v=IZDZrdwKQ0M"
-            target="_blank"
-            rel="noopener noreferrer"
+            data-video="IZDZrdwKQ0M"
         >
 
             <div class="movie-image">
 
-                <span class="badge">NUEVO</span>
+                <span class="badge">
+                    NUEVO
+                </span>
 
                 <img
                     src="https://img.youtube.com/vi/IZDZrdwKQ0M/0.jpg"
@@ -1011,27 +1299,36 @@ footer{
 
             </div>
 
+
             <div class="movie-info">
-                <h3>Película 11</h3>
-                <p>Película • HD</p>
+
+                <h3>
+                    Película 11
+                </h3>
+
+                <p>
+                    Película • HD
+                </p>
+
             </div>
 
-        </a>
+        </article>
+
 
 
         <!-- PELÍCULA 12 -->
 
-        <a
+        <article
             class="movie"
             data-title="Las Tres Rosas"
-            href="https://www.youtube.com/watch?v=DmZyDrEyjJY"
-            target="_blank"
-            rel="noopener noreferrer"
+            data-video="DmZyDrEyjJY"
         >
 
             <div class="movie-image">
 
-                <span class="badge">NUEVO</span>
+                <span class="badge">
+                    NUEVO
+                </span>
 
                 <img
                     src="https://img.youtube.com/vi/DmZyDrEyjJY/0.jpg"
@@ -1045,12 +1342,20 @@ footer{
 
             </div>
 
+
             <div class="movie-info">
-                <h3>Las Tres Rosas</h3>
-                <p>Película • HD</p>
+
+                <h3>
+                    Las Tres Rosas
+                </h3>
+
+                <p>
+                    Película • HD
+                </p>
+
             </div>
 
-        </a>
+        </article>
 
 
     </div>
@@ -1068,6 +1373,61 @@ footer{
 </main>
 
 
+
+<!-- =========================
+     MODAL DEL REPRODUCTOR
+========================= -->
+
+<div
+    class="video-modal"
+    id="videoModal"
+    aria-hidden="true"
+>
+
+    <div
+        class="video-box"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="videoTitle"
+    >
+
+        <div class="video-frame">
+
+            <iframe
+                id="youtubePlayer"
+                src=""
+                title="Reproductor de YouTube"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+            ></iframe>
+
+        </div>
+
+
+        <div class="video-title">
+
+            <h2 id="videoTitle">
+                Película
+            </h2>
+
+
+            <button
+                type="button"
+                class="close-video"
+                id="closeVideo"
+                aria-label="Cerrar reproductor"
+            >
+                ✕
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
 <!-- =========================
      FOOTER
 ========================= -->
@@ -1083,21 +1443,189 @@ footer{
 </footer>
 
 
+
 <script>
 
-/* =========================
-   BUSCADOR
-========================= */
-
-const searchInput =
-    document.getElementById("searchInput");
+/* ========================================
+   ELEMENTOS
+======================================== */
 
 const movies =
     document.querySelectorAll(".movie");
 
+const videoModal =
+    document.getElementById("videoModal");
+
+const youtubePlayer =
+    document.getElementById("youtubePlayer");
+
+const videoTitle =
+    document.getElementById("videoTitle");
+
+const closeVideo =
+    document.getElementById("closeVideo");
+
+const searchInput =
+    document.getElementById("searchInput");
+
 const noResults =
     document.getElementById("noResults");
 
+const heroPlay =
+    document.getElementById("heroPlay");
+
+
+/* ========================================
+   ABRIR REPRODUCTOR
+======================================== */
+
+function abrirVideo(videoId, titulo){
+
+    videoTitle.textContent = titulo;
+
+    youtubePlayer.src =
+        "https://www.youtube.com/embed/" +
+        videoId +
+        "?autoplay=1&rel=0";
+
+    videoModal.classList.add("active");
+
+    videoModal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.style.overflow = "hidden";
+
+}
+
+
+/* ========================================
+   CERRAR REPRODUCTOR
+======================================== */
+
+function cerrarVideo(){
+
+    youtubePlayer.src = "";
+
+    videoModal.classList.remove(
+        "active"
+    );
+
+    videoModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    document.body.style.overflow = "";
+
+}
+
+
+/* ========================================
+   CLIC EN PELÍCULAS
+======================================== */
+
+movies.forEach(function(movie){
+
+    movie.addEventListener(
+        "click",
+        function(){
+
+            const videoId =
+                this.getAttribute(
+                    "data-video"
+                );
+
+            const titulo =
+                this.getAttribute(
+                    "data-title"
+                );
+
+            abrirVideo(
+                videoId,
+                titulo
+            );
+
+        }
+    );
+
+});
+
+
+/* ========================================
+   BOTÓN CERRAR
+======================================== */
+
+closeVideo.addEventListener(
+    "click",
+    cerrarVideo
+);
+
+
+/* ========================================
+   CERRAR AL TOCAR EL FONDO
+======================================== */
+
+videoModal.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target === videoModal
+        ){
+
+            cerrarVideo();
+
+        }
+
+    }
+);
+
+
+/* ========================================
+   TECLA ESC
+======================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === "Escape" &&
+            videoModal.classList.contains(
+                "active"
+            )
+        ){
+
+            cerrarVideo();
+
+        }
+
+    }
+);
+
+
+/* ========================================
+   BOTÓN VER AHORA
+======================================== */
+
+heroPlay.addEventListener(
+    "click",
+    function(){
+
+        abrirVideo(
+            "oezrSRPoZnY",
+            "Película 1"
+        );
+
+    }
+);
+
+
+/* ========================================
+   BUSCADOR
+======================================== */
 
 searchInput.addEventListener(
     "input",
@@ -1116,18 +1644,25 @@ searchInput.addEventListener(
 
                 const title =
                     movie
-                    .getAttribute("data-title")
+                    .getAttribute(
+                        "data-title"
+                    )
                     .toLowerCase();
 
 
-                if(title.includes(search)){
+                if(
+                    title.includes(search)
+                ){
 
-                    movie.style.display = "";
+                    movie.style.display =
+                        "";
+
                     visible++;
 
                 }else{
 
-                    movie.style.display = "none";
+                    movie.style.display =
+                        "none";
 
                 }
 
@@ -1135,10 +1670,17 @@ searchInput.addEventListener(
         );
 
 
-        noResults.style.display =
-            visible === 0
-            ? "block"
-            : "none";
+        if(visible === 0){
+
+            noResults.style.display =
+                "block";
+
+        }else{
+
+            noResults.style.display =
+                "none";
+
+        }
 
     }
 );
@@ -1147,4 +1689,4 @@ searchInput.addEventListener(
 
 
 </body>
-</html>
+    </html>
