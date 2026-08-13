@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
 
 <title>CINEFLIX | Películas</title>
 
@@ -24,10 +25,9 @@ body{
     font-family:Arial,Helvetica,sans-serif;
 }
 
-
-/* =========================
+/* =========================================
    HEADER
-========================= */
+========================================= */
 
 .header{
     position:fixed;
@@ -46,7 +46,7 @@ body{
     background:linear-gradient(
         to bottom,
         rgba(0,0,0,.98),
-        rgba(0,0,0,.75),
+        rgba(0,0,0,.78),
         transparent
     );
 }
@@ -74,27 +74,24 @@ body{
     color:#e50914;
 }
 
-
-/* =========================
+/* =========================================
    BUSCADOR
-========================= */
-
-.search-box{
-    display:flex;
-    align-items:center;
-}
+========================================= */
 
 .search-box input{
     width:210px;
     height:38px;
+
     padding:0 15px;
 
     background:#151515;
     border:1px solid #444;
+
     border-radius:20px;
 
     color:#fff;
     outline:none;
+
     font-size:14px;
 }
 
@@ -106,10 +103,9 @@ body{
     border-color:#e50914;
 }
 
-
-/* =========================
+/* =========================================
    HERO
-========================= */
+========================================= */
 
 .hero{
     min-height:650px;
@@ -133,9 +129,7 @@ body{
             #080808 0%,
             transparent 40%
         ),
-        url(
-            "https://img.youtube.com/vi/oezrSRPoZnY/0.jpg"
-        )
+        url("https://img.youtube.com/vi/oezrSRPoZnY/0.jpg")
         center/cover no-repeat;
 }
 
@@ -165,11 +159,6 @@ body{
     margin-bottom:25px;
 }
 
-
-/* =========================
-   BOTONES
-========================= */
-
 .hero-buttons{
     display:flex;
     gap:12px;
@@ -189,9 +178,8 @@ body{
 
     text-decoration:none;
 
-    transition:.2s;
-
     cursor:pointer;
+    transition:.2s;
 }
 
 .btn-play{
@@ -202,7 +190,6 @@ body{
 
 .btn-play:hover{
     background:#ddd;
-    transform:scale(1.03);
 }
 
 .btn-info{
@@ -214,10 +201,9 @@ body{
     background:#666;
 }
 
-
-/* =========================
+/* =========================================
    CONTENIDO
-========================= */
+========================================= */
 
 main{
     position:relative;
@@ -234,10 +220,9 @@ main{
     margin-bottom:20px;
 }
 
-
-/* =========================
+/* =========================================
    GRID
-========================= */
+========================================= */
 
 .movies{
     display:grid;
@@ -245,13 +230,13 @@ main{
     gap:18px;
 }
 
-
-/* =========================
-   TARJETA
-========================= */
+/* =========================================
+   TARJETAS
+========================================= */
 
 .movie{
     position:relative;
+
     display:block;
     overflow:hidden;
 
@@ -278,10 +263,14 @@ main{
     z-index:10;
 }
 
+.youtube-direct{
+    text-decoration:none;
+    color:#fff;
+}
 
-/* =========================
-   PORTADAS FIJAS
-========================= */
+/* =========================================
+   PORTADAS
+========================================= */
 
 .movie-image{
     position:relative;
@@ -309,10 +298,9 @@ main{
     transform:scale(1.06);
 }
 
-
-/* =========================
+/* =========================================
    PLAY
-========================= */
+========================================= */
 
 .play-overlay{
     position:absolute;
@@ -348,10 +336,9 @@ main{
     font-size:22px;
 }
 
-
-/* =========================
+/* =========================================
    INFORMACIÓN
-========================= */
+========================================= */
 
 .movie-info{
     padding:12px;
@@ -368,10 +355,9 @@ main{
     font-size:12px;
 }
 
-
-/* =========================
-   BADGE
-========================= */
+/* =========================================
+   NUEVO
+========================================= */
 
 .badge{
     position:absolute;
@@ -391,10 +377,73 @@ main{
     font-weight:bold;
 }
 
+/* =========================================
+   SECCIÓN TENDENCIAS
+========================================= */
 
-/* =========================
+.trending-section{
+    display:none;
+
+    padding:10px 5% 40px;
+}
+
+.trending-section.visible{
+    display:block;
+}
+
+.trending-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:20px;
+}
+
+.trending-title{
+    font-size:25px;
+    font-weight:bold;
+}
+
+.trending-subtitle{
+    color:#777;
+    font-size:13px;
+}
+
+.trending-movies{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+/* =========================================
+   BADGE VISTO
+========================================= */
+
+.seen-badge{
+    position:absolute;
+
+    right:9px;
+    top:9px;
+
+    z-index:4;
+
+    padding:6px 9px;
+
+    background:rgba(0,0,0,.80);
+
+    border:1px solid rgba(255,255,255,.25);
+
+    border-radius:5px;
+
+    color:#fff;
+
+    font-size:10px;
+    font-weight:bold;
+}
+
+/* =========================================
    SIN RESULTADOS
-========================= */
+========================================= */
 
 .no-results{
     display:none;
@@ -408,16 +457,13 @@ main{
     font-size:18px;
 }
 
-
-/* =========================
-   MODAL DEL REPRODUCTOR
-========================= */
+/* =========================================
+   MODAL
+========================================= */
 
 .video-modal{
     position:fixed;
-
-    top:0;
-    left:0;
+    inset:0;
 
     width:100%;
     height:100%;
@@ -429,9 +475,9 @@ main{
     align-items:center;
     justify-content:center;
 
-    padding:25px;
+    padding:20px;
 
-    background:rgba(0,0,0,.88);
+    background:rgba(0,0,0,.92);
 
     backdrop-filter:blur(5px);
 }
@@ -440,12 +486,7 @@ main{
     display:flex;
 }
 
-
-/* CAJA DEL REPRODUCTOR */
-
 .video-box{
-    position:relative;
-
     width:min(1100px,95vw);
 
     background:#000;
@@ -458,14 +499,10 @@ main{
         0 25px 80px rgba(0,0,0,.95);
 }
 
-
-/* VIDEO */
-
 .video-frame{
     position:relative;
 
     width:100%;
-
     aspect-ratio:16/9;
 
     background:#000;
@@ -473,18 +510,13 @@ main{
 
 .video-frame iframe{
     position:absolute;
-
-    top:0;
-    left:0;
+    inset:0;
 
     width:100%;
     height:100%;
 
     border:0;
 }
-
-
-/* TÍTULO */
 
 .video-title{
     display:flex;
@@ -501,51 +533,35 @@ main{
 
 .video-title h2{
     color:#fff;
-
     font-size:18px;
-
-    font-weight:bold;
 }
-
-
-/* BOTÓN CERRAR */
 
 .close-video{
     width:38px;
     height:38px;
 
-    flex-shrink:0;
-
     display:flex;
-
     align-items:center;
     justify-content:center;
 
     border:0;
-
     border-radius:50%;
 
     background:#e50914;
-
     color:#fff;
 
     font-size:20px;
 
     cursor:pointer;
-
-    transition:.2s;
 }
 
 .close-video:hover{
     background:#b20710;
-
-    transform:scale(1.05);
 }
 
-
-/* =========================
+/* =========================================
    FOOTER
-========================= */
+========================================= */
 
 footer{
     margin-top:30px;
@@ -561,23 +577,22 @@ footer{
     font-size:13px;
 }
 
-
-/* =========================
+/* =========================================
    TABLET
-========================= */
+========================================= */
 
 @media(max-width:1100px){
 
-    .movies{
+    .movies,
+    .trending-movies{
         grid-template-columns:repeat(3,1fr);
     }
 
 }
 
-
-/* =========================
+/* =========================================
    CELULAR
-========================= */
+========================================= */
 
 @media(max-width:800px){
 
@@ -612,9 +627,7 @@ footer{
                 rgba(8,8,8,.45) 65%,
                 rgba(8,8,8,.65) 100%
             ),
-            url(
-                "https://img.youtube.com/vi/oezrSRPoZnY/0.jpg"
-            )
+            url("https://img.youtube.com/vi/oezrSRPoZnY/0.jpg")
             center/cover no-repeat;
     }
 
@@ -631,10 +644,11 @@ footer{
     }
 
     .section-title{
-        font-size:24px;
+        font-size:23px;
     }
 
-    .movies{
+    .movies,
+    .trending-movies{
         grid-template-columns:repeat(2,1fr);
         gap:12px;
     }
@@ -647,8 +661,17 @@ footer{
         font-size:14px;
     }
 
+    .trending-section{
+        padding:10px 15px 30px;
+    }
 
-    /* MODAL EN CELULAR */
+    .trending-title{
+        font-size:22px;
+    }
+
+    .trending-subtitle{
+        font-size:11px;
+    }
 
     .video-modal{
         padding:12px;
@@ -659,10 +682,6 @@ footer{
         border-radius:7px;
     }
 
-    .video-title{
-        padding:10px 12px;
-    }
-
     .video-title h2{
         font-size:15px;
     }
@@ -670,16 +689,14 @@ footer{
     .close-video{
         width:34px;
         height:34px;
-
         font-size:17px;
     }
 
 }
 
-
-/* =========================
+/* =========================================
    CELULAR PEQUEÑO
-========================= */
+========================================= */
 
 @media(max-width:450px){
 
@@ -704,7 +721,8 @@ footer{
         font-size:14px;
     }
 
-    .movies{
+    .movies,
+    .trending-movies{
         gap:9px;
     }
 
@@ -712,26 +730,32 @@ footer{
         font-size:13px;
     }
 
+    .trending-header{
+        display:block;
+    }
+
+    .trending-subtitle{
+        display:block;
+        margin-top:5px;
+    }
+
 }
 
 </style>
-
 </head>
-
 
 <body>
 
 
-<!-- =========================
+<!-- =========================================
      HEADER
-========================= -->
+========================================= -->
 
 <header class="header">
 
     <div class="logo">
         CINEFLIX
     </div>
-
 
     <nav class="nav">
 
@@ -749,7 +773,6 @@ footer{
 
     </nav>
 
-
     <div class="search-box">
 
         <input
@@ -764,10 +787,9 @@ footer{
 </header>
 
 
-
-<!-- =========================
+<!-- =========================================
      HERO
-========================= -->
+========================================= -->
 
 <section
     class="hero"
@@ -780,17 +802,14 @@ footer{
             🎬 PELÍCULA DESTACADA
         </div>
 
-
         <h1>
             CINEFLIX
         </h1>
-
 
         <p>
             Disfruta de nuestras películas y descubre
             nuevas historias para disfrutar.
         </p>
-
 
         <div class="hero-buttons">
 
@@ -801,7 +820,6 @@ footer{
             >
                 ▶ Ver ahora
             </button>
-
 
             <a
                 href="#peliculas"
@@ -817,10 +835,9 @@ footer{
 </section>
 
 
-
-<!-- =========================
-     CATÁLOGO
-========================= -->
+<!-- =========================================
+     PELÍCULAS
+========================================= -->
 
 <main>
 
@@ -829,11 +846,8 @@ footer{
     id="peliculas"
 >
 
-    <h2
-        class="section-title"
-        id="tendencias"
-    >
-        🔥 Películas disponibles
+    <h2 class="section-title">
+        🎬 Películas disponibles
     </h2>
 
 
@@ -847,7 +861,8 @@ footer{
 
         <article
             class="movie"
-            data-title="Película 1"
+            data-id="1"
+            data-title="EL MISTERIO DEL KHARISIRI"
             data-video="oezrSRPoZnY"
         >
 
@@ -859,7 +874,7 @@ footer{
 
                 <img
                     src="https://img.youtube.com/vi/oezrSRPoZnY/0.jpg"
-                    alt="Película 1"
+                    alt="EL MISTERIO DEL KHARISIRI"
                     loading="eager"
                 >
 
@@ -869,11 +884,10 @@ footer{
 
             </div>
 
-
             <div class="movie-info">
 
                 <h3>
-                    Película 1
+                    EL MISTERIO DEL KHARISIRI
                 </h3>
 
                 <p>
@@ -885,12 +899,12 @@ footer{
         </article>
 
 
-
         <!-- PELÍCULA 2 -->
 
         <article
             class="movie"
-            data-title="Película 2"
+            data-id="2"
+            data-title="DESTINO DE LOS POBRES"
             data-video="tTChOuwrxwk"
         >
 
@@ -902,7 +916,7 @@ footer{
 
                 <img
                     src="https://img.youtube.com/vi/tTChOuwrxwk/0.jpg"
-                    alt="Película 2"
+                    alt="DESTINO DE LOS POBRES"
                     loading="lazy"
                 >
 
@@ -912,11 +926,10 @@ footer{
 
             </div>
 
-
             <div class="movie-info">
 
                 <h3>
-                    Película 2
+                    DESTINO DE LOS POBRES
                 </h3>
 
                 <p>
@@ -928,12 +941,12 @@ footer{
         </article>
 
 
-
         <!-- PELÍCULA 3 -->
 
         <article
             class="movie"
-            data-title="Película 3"
+            data-id="3"
+            data-title="MATAR PARA VIVIR"
             data-video="gXJEHMWuIAo"
         >
 
@@ -945,7 +958,7 @@ footer{
 
                 <img
                     src="https://img.youtube.com/vi/gXJEHMWuIAo/0.jpg"
-                    alt="Película 3"
+                    alt="MATAR PARA VIVIR"
                     loading="lazy"
                 >
 
@@ -955,11 +968,10 @@ footer{
 
             </div>
 
-
             <div class="movie-info">
 
                 <h3>
-                    Película 3
+                    MATAR PARA VIVIR
                 </h3>
 
                 <p>
@@ -971,12 +983,12 @@ footer{
         </article>
 
 
-
         <!-- PELÍCULA 4 -->
 
         <article
             class="movie"
-            data-title="Película 4"
+            data-id="4"
+            data-title="LA CASA EMBRUJADA"
             data-video="vwwxe0lWomI"
         >
 
@@ -988,7 +1000,7 @@ footer{
 
                 <img
                     src="https://img.youtube.com/vi/vwwxe0lWomI/0.jpg"
-                    alt="Película 4"
+                    alt="LA CASA EMBRUJADA"
                     loading="lazy"
                 >
 
@@ -998,11 +1010,10 @@ footer{
 
             </div>
 
-
             <div class="movie-info">
 
                 <h3>
-                    Película 4
+                    LA CASA EMBRUJADA
                 </h3>
 
                 <p>
@@ -1014,12 +1025,12 @@ footer{
         </article>
 
 
-
         <!-- PELÍCULA 5 -->
 
         <article
             class="movie"
-            data-title="Película 5"
+            data-id="5"
+            data-title="LA MADRE"
             data-video="AdEoI4Q9Yis"
         >
 
@@ -1031,7 +1042,7 @@ footer{
 
                 <img
                     src="https://img.youtube.com/vi/AdEoI4Q9Yis/0.jpg"
-                    alt="Película 5"
+                    alt="LA MADRE"
                     loading="lazy"
                 >
 
@@ -1041,11 +1052,10 @@ footer{
 
             </div>
 
-
             <div class="movie-info">
 
                 <h3>
-                    Película 5
+                    LA MADRE
                 </h3>
 
                 <p>
@@ -1057,13 +1067,16 @@ footer{
         </article>
 
 
+        <!-- PELÍCULA 6
+             DIRECTAMENTE A YOUTUBE -->
 
-        <!-- PELÍCULA 6 -->
-
-        <article
-            class="movie"
-            data-title="Película 6"
-            data-video="AwZYHTDvHc4"
+        <a
+            class="movie youtube-direct"
+            data-id="6"
+            data-title="PERDONE DE HIJO"
+            href="https://youtu.be/AwZYHTDvHc4"
+            target="_blank"
+            rel="noopener noreferrer"
         >
 
             <div class="movie-image">
@@ -1074,7 +1087,7 @@ footer{
 
                 <img
                     src="https://img.youtube.com/vi/AwZYHTDvHc4/0.jpg"
-                    alt="Película 6"
+                    alt="PERDONE DE HIJO"
                     loading="lazy"
                 >
 
@@ -1084,11 +1097,10 @@ footer{
 
             </div>
 
-
             <div class="movie-info">
 
                 <h3>
-                    Película 6
+                    PERDONE DE HIJO
                 </h3>
 
                 <p>
@@ -1097,15 +1109,15 @@ footer{
 
             </div>
 
-        </article>
-
+        </a>
 
 
         <!-- PELÍCULA 7 -->
 
         <article
             class="movie"
-            data-title="Película 7"
+            data-id="7"
+            data-title="HIJASTRA MALCRIADA"
             data-video="9pEy9zzUjt8"
         >
 
@@ -1117,7 +1129,7 @@ footer{
 
                 <img
                     src="https://img.youtube.com/vi/9pEy9zzUjt8/0.jpg"
-                    alt="Película 7"
+                    alt="HIJASTRA MALCRIADA"
                     loading="lazy"
                 >
 
@@ -1127,11 +1139,10 @@ footer{
 
             </div>
 
-
             <div class="movie-info">
 
                 <h3>
-                    Película 7
+                    HIJASTRA MALCRIADA
                 </h3>
 
                 <p>
@@ -1143,12 +1154,12 @@ footer{
         </article>
 
 
-
         <!-- PELÍCULA 8 -->
 
         <article
             class="movie"
-            data-title="Película 8"
+            data-id="8"
+            data-title="LA PELIGROSA"
             data-video="A_0dyyJL0mU"
         >
 
@@ -1159,9 +1170,13 @@ footer{
                 </span>
 
                 <img
-                    src="https://img.youtube.com/vi/A_0dyyJL0mU/0.jpg"
-                    alt="Película 8"
+                    src="https://img.youtube.com/vi/A_0dyyJL0mU/maxresdefault.jpg"
+                    alt="LA PELIGROSA"
                     loading="lazy"
+                    onerror="
+                        this.onerror=null;
+                        this.src='https://img.youtube.com/vi/A_0dyyJL0mU/0.jpg';
+                    "
                 >
 
                 <div class="play-overlay">
@@ -1170,11 +1185,10 @@ footer{
 
             </div>
 
-
             <div class="movie-info">
 
                 <h3>
-                    Película 8
+                    LA PELIGROSA
                 </h3>
 
                 <p>
@@ -1186,12 +1200,12 @@ footer{
         </article>
 
 
-
         <!-- PELÍCULA 9 -->
 
         <article
             class="movie"
-            data-title="Película 9"
+            data-id="9"
+            data-title="LA FUERZA DEL CONDOR"
             data-video="-Ld2sE1aGc0"
         >
 
@@ -1203,7 +1217,7 @@ footer{
 
                 <img
                     src="https://img.youtube.com/vi/-Ld2sE1aGc0/0.jpg"
-                    alt="Película 9"
+                    alt="LA FUERZA DEL CONDOR"
                     loading="lazy"
                 >
 
@@ -1213,11 +1227,10 @@ footer{
 
             </div>
 
-
             <div class="movie-info">
 
                 <h3>
-                    Película 9
+                    LA FUERZA DEL CONDOR
                 </h3>
 
                 <p>
@@ -1229,12 +1242,12 @@ footer{
         </article>
 
 
-
         <!-- PELÍCULA 10 -->
 
         <article
             class="movie"
-            data-title="Película 10"
+            data-id="10"
+            data-title="WINAYA PACHA"
             data-video="RgfTg591iPg"
         >
 
@@ -1246,7 +1259,7 @@ footer{
 
                 <img
                     src="https://img.youtube.com/vi/RgfTg591iPg/0.jpg"
-                    alt="Película 10"
+                    alt="WINAYA PACHA"
                     loading="lazy"
                 >
 
@@ -1256,11 +1269,10 @@ footer{
 
             </div>
 
-
             <div class="movie-info">
 
                 <h3>
-                    Película 10
+                    WINAYA PACHA
                 </h3>
 
                 <p>
@@ -1272,13 +1284,16 @@ footer{
         </article>
 
 
+        <!-- PELÍCULA 11
+             DIRECTAMENTE A YOUTUBE -->
 
-        <!-- PELÍCULA 11 -->
-
-        <article
-            class="movie"
-            data-title="Película 11"
-            data-video="IZDZrdwKQ0M"
+        <a
+            class="movie youtube-direct"
+            data-id="11"
+            data-title="MAX Y NIKE"
+            href="https://youtu.be/IZDZrdwKQ0M"
+            target="_blank"
+            rel="noopener noreferrer"
         >
 
             <div class="movie-image">
@@ -1289,7 +1304,7 @@ footer{
 
                 <img
                     src="https://img.youtube.com/vi/IZDZrdwKQ0M/0.jpg"
-                    alt="Película 11"
+                    alt="MAX Y NIKE"
                     loading="lazy"
                 >
 
@@ -1299,11 +1314,10 @@ footer{
 
             </div>
 
-
             <div class="movie-info">
 
                 <h3>
-                    Película 11
+                    MAX Y NIKE
                 </h3>
 
                 <p>
@@ -1312,15 +1326,15 @@ footer{
 
             </div>
 
-        </article>
-
+        </a>
 
 
         <!-- PELÍCULA 12 -->
 
         <article
             class="movie"
-            data-title="Las Tres Rosas"
+            data-id="12"
+            data-title="LAS TRES ROSAS"
             data-video="DmZyDrEyjJY"
         >
 
@@ -1332,7 +1346,7 @@ footer{
 
                 <img
                     src="https://img.youtube.com/vi/DmZyDrEyjJY/0.jpg"
-                    alt="Las Tres Rosas"
+                    alt="LAS TRES ROSAS"
                     loading="lazy"
                 >
 
@@ -1342,11 +1356,10 @@ footer{
 
             </div>
 
-
             <div class="movie-info">
 
                 <h3>
-                    Las Tres Rosas
+                    LAS TRES ROSAS
                 </h3>
 
                 <p>
@@ -1361,6 +1374,8 @@ footer{
     </div>
 
 
+    <!-- SIN RESULTADOS -->
+
     <div
         class="no-results"
         id="noResults"
@@ -1370,13 +1385,49 @@ footer{
 
 </section>
 
+
+<!-- =========================================
+     TENDENCIAS / VISTOS
+========================================= -->
+
+<section
+    class="trending-section"
+    id="tendencias"
+>
+
+    <div class="trending-header">
+
+        <div>
+
+            <h2 class="trending-title">
+                🔥 Tendencias
+            </h2>
+
+            <span class="trending-subtitle">
+                Películas que has visto recientemente
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="trending-movies"
+        id="trendingMovies"
+    >
+
+    </div>
+
+</section>
+
+
 </main>
 
 
-
-<!-- =========================
-     MODAL DEL REPRODUCTOR
-========================= -->
+<!-- =========================================
+     REPRODUCTOR
+========================================= -->
 
 <div
     class="video-modal"
@@ -1388,7 +1439,6 @@ footer{
         class="video-box"
         role="dialog"
         aria-modal="true"
-        aria-labelledby="videoTitle"
     >
 
         <div class="video-frame">
@@ -1398,18 +1448,16 @@ footer{
                 src=""
                 title="Reproductor de YouTube"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-            ></iframe>
+                allowfullscreen>
+            </iframe>
 
         </div>
-
 
         <div class="video-title">
 
             <h2 id="videoTitle">
                 Película
             </h2>
-
 
             <button
                 type="button"
@@ -1427,10 +1475,9 @@ footer{
 </div>
 
 
-
-<!-- =========================
+<!-- =========================================
      FOOTER
-========================= -->
+========================================= -->
 
 <footer>
 
@@ -1443,15 +1490,11 @@ footer{
 </footer>
 
 
-
 <script>
 
-/* ========================================
+/* =========================================
    ELEMENTOS
-======================================== */
-
-const movies =
-    document.querySelectorAll(".movie");
+========================================= */
 
 const videoModal =
     document.getElementById("videoModal");
@@ -1474,88 +1517,548 @@ const noResults =
 const heroPlay =
     document.getElementById("heroPlay");
 
+const trendingSection =
+    document.getElementById("tendencias");
 
-/* ========================================
-   ABRIR REPRODUCTOR
-======================================== */
+const trendingMovies =
+    document.getElementById("trendingMovies");
 
-function abrirVideo(videoId, titulo){
 
-    videoTitle.textContent = titulo;
+/* =========================================
+   DATOS DE LAS PELÍCULAS
+========================================= */
+
+const peliculas = {
+
+    "1":{
+        id:"1",
+        title:"EL MISTERIO DEL KHARISIRI",
+        video:"oezrSRPoZnY",
+        image:"https://img.youtube.com/vi/oezrSRPoZnY/0.jpg",
+        youtube:false
+    },
+
+    "2":{
+        id:"2",
+        title:"DESTINO DE LOS POBRES",
+        video:"tTChOuwrxwk",
+        image:"https://img.youtube.com/vi/tTChOuwrxwk/0.jpg",
+        youtube:false
+    },
+
+    "3":{
+        id:"3",
+        title:"MATAR PARA VIVIR",
+        video:"gXJEHMWuIAo",
+        image:"https://img.youtube.com/vi/gXJEHMWuIAo/0.jpg",
+        youtube:false
+    },
+
+    "4":{
+        id:"4",
+        title:"LA CASA EMBRUJADA",
+        video:"vwwxe0lWomI",
+        image:"https://img.youtube.com/vi/vwwxe0lWomI/0.jpg",
+        youtube:false
+    },
+
+    "5":{
+        id:"5",
+        title:"LA MADRE",
+        video:"AdEoI4Q9Yis",
+        image:"https://img.youtube.com/vi/AdEoI4Q9Yis/0.jpg",
+        youtube:false
+    },
+
+    "6":{
+        id:"6",
+        title:"PERDONE DE HIJO",
+        video:"AwZYHTDvHc4",
+        image:"https://img.youtube.com/vi/AwZYHTDvHc4/0.jpg",
+        youtube:true,
+        url:"https://youtu.be/AwZYHTDvHc4"
+    },
+
+    "7":{
+        id:"7",
+        title:"HIJASTRA MALCRIADA",
+        video:"9pEy9zzUjt8",
+        image:"https://img.youtube.com/vi/9pEy9zzUjt8/0.jpg",
+        youtube:false
+    },
+
+    "8":{
+        id:"8",
+        title:"LA PELIGROSA",
+        video:"A_0dyyJL0mU",
+        image:"https://img.youtube.com/vi/A_0dyyJL0mU/maxresdefault.jpg",
+        fallback:"https://img.youtube.com/vi/A_0dyyJL0mU/0.jpg",
+        youtube:false
+    },
+
+    "9":{
+        id:"9",
+        title:"LA FUERZA DEL CONDOR",
+        video:"-Ld2sE1aGc0",
+        image:"https://img.youtube.com/vi/-Ld2sE1aGc0/0.jpg",
+        youtube:false
+    },
+
+    "10":{
+        id:"10",
+        title:"WINAYA PACHA",
+        video:"RgfTg591iPg",
+        image:"https://img.youtube.com/vi/RgfTg591iPg/0.jpg",
+        youtube:false
+    },
+
+    "11":{
+        id:"11",
+        title:"MAX Y NIKE",
+        video:"IZDZrdwKQ0M",
+        image:"https://img.youtube.com/vi/IZDZrdwKQ0M/0.jpg",
+        youtube:true,
+        url:"https://youtu.be/IZDZrdwKQ0M"
+    },
+
+    "12":{
+        id:"12",
+        title:"LAS TRES ROSAS",
+        video:"DmZyDrEyjJY",
+        image:"https://img.youtube.com/vi/DmZyDrEyjJY/0.jpg",
+        youtube:false
+    }
+
+};
+
+
+/* =========================================
+   GUARDAR VISTO
+========================================= */
+
+function guardarVisto(id){
+
+    let vistos = [];
+
+    try{
+
+        vistos =
+            JSON.parse(
+                localStorage.getItem(
+                    "cineflix_vistos"
+                )
+            ) || [];
+
+    }catch(error){
+
+        vistos = [];
+
+    }
+
+
+    /*
+     * Quitamos el elemento si ya existía
+     * para colocarlo nuevamente al principio.
+     */
+
+    vistos =
+        vistos.filter(
+            item => item !== id
+        );
+
+
+    /*
+     * El más reciente queda primero.
+     */
+
+    vistos.unshift(id);
+
+
+    /*
+     * Guardamos máximo 12.
+     */
+
+    vistos =
+        vistos.slice(0,12);
+
+
+    localStorage.setItem(
+        "cineflix_vistos",
+        JSON.stringify(vistos)
+    );
+
+
+    mostrarTendencias();
+
+}
+
+
+/* =========================================
+   OBTENER VISTOS
+========================================= */
+
+function obtenerVistos(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(
+                "cineflix_vistos"
+            )
+        ) || [];
+
+    }catch(error){
+
+        return [];
+
+    }
+
+}
+
+
+/* =========================================
+   CREAR TARJETA DE TENDENCIA
+========================================= */
+
+function crearTarjetaTendencia(pelicula){
+
+    const card =
+        document.createElement(
+            "article"
+        );
+
+    card.className =
+        "movie";
+
+    card.innerHTML = `
+
+        <div class="movie-image">
+
+            <span class="seen-badge">
+                ✓ VISTO
+            </span>
+
+            <img
+                src="${pelicula.image}"
+                alt="${pelicula.title}"
+                loading="lazy"
+            >
+
+            <div class="play-overlay">
+
+                <div class="play-circle">
+                    ▶
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="movie-info">
+
+            <h3>
+                ${pelicula.title}
+            </h3>
+
+            <p>
+                Visto recientemente
+            </p>
+
+        </div>
+
+    `;
+
+
+    /*
+     * Si es película 8 y no carga
+     * la portada grande, usa la pequeña.
+     */
+
+    const img =
+        card.querySelector("img");
+
+    if(pelicula.fallback){
+
+        img.onerror =
+            function(){
+
+                this.onerror = null;
+
+                this.src =
+                    pelicula.fallback;
+
+            };
+
+    }
+
+
+    /*
+     * Al tocar una tendencia,
+     * vuelve a abrir la película.
+     */
+
+    card.addEventListener(
+        "click",
+        function(){
+
+            guardarVisto(
+                pelicula.id
+            );
+
+
+            if(pelicula.youtube){
+
+                window.location.href =
+                    pelicula.url;
+
+                return;
+
+            }
+
+
+            abrirVideo(
+                pelicula.video,
+                pelicula.title
+            );
+
+        }
+    );
+
+
+    return card;
+
+}
+
+
+/* =========================================
+   MOSTRAR TENDENCIAS
+========================================= */
+
+function mostrarTendencias(){
+
+    trendingMovies.innerHTML = "";
+
+
+    const vistos =
+        obtenerVistos();
+
+
+    if(vistos.length === 0){
+
+        trendingSection.classList.remove(
+            "visible"
+        );
+
+        return;
+
+    }
+
+
+    trendingSection.classList.add(
+        "visible"
+    );
+
+
+    vistos.forEach(
+        function(id){
+
+            const pelicula =
+                peliculas[id];
+
+            if(!pelicula){
+                return;
+            }
+
+
+            const tarjeta =
+                crearTarjetaTendencia(
+                    pelicula
+                );
+
+
+            trendingMovies.appendChild(
+                tarjeta
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   ABRIR VIDEO
+========================================= */
+
+function abrirVideo(
+    videoId,
+    titulo
+){
+
+    videoTitle.textContent =
+        titulo;
+
 
     youtubePlayer.src =
         "https://www.youtube.com/embed/" +
         videoId +
         "?autoplay=1&rel=0";
 
-    videoModal.classList.add("active");
+
+    videoModal.classList.add(
+        "active"
+    );
+
 
     videoModal.setAttribute(
         "aria-hidden",
         "false"
     );
 
-    document.body.style.overflow = "hidden";
+
+    document.body.style.overflow =
+        "hidden";
 
 }
 
 
-/* ========================================
-   CERRAR REPRODUCTOR
-======================================== */
+/* =========================================
+   CERRAR VIDEO
+========================================= */
 
 function cerrarVideo(){
 
-    youtubePlayer.src = "";
+    youtubePlayer.src =
+        "";
+
 
     videoModal.classList.remove(
         "active"
     );
+
 
     videoModal.setAttribute(
         "aria-hidden",
         "true"
     );
 
-    document.body.style.overflow = "";
+
+    document.body.style.overflow =
+        "";
 
 }
 
 
-/* ========================================
-   CLIC EN PELÍCULAS
-======================================== */
+/* =========================================
+   PELÍCULAS NORMALES
+========================================= */
 
-movies.forEach(function(movie){
+document
+.querySelectorAll(
+    ".movie:not(.youtube-direct)"
+)
+.forEach(
+    function(movie){
 
-    movie.addEventListener(
-        "click",
-        function(){
+        movie.addEventListener(
+            "click",
+            function(){
 
-            const videoId =
-                this.getAttribute(
-                    "data-video"
+                const id =
+                    this.dataset.id;
+
+
+                const pelicula =
+                    peliculas[id];
+
+
+                if(!pelicula){
+                    return;
+                }
+
+
+                /*
+                 * Guardamos como visto.
+                 */
+
+                guardarVisto(
+                    id
                 );
 
-            const titulo =
-                this.getAttribute(
-                    "data-title"
+
+                /*
+                 * Abrimos reproductor.
+                 */
+
+                abrirVideo(
+                    pelicula.video,
+                    pelicula.title
                 );
 
-            abrirVideo(
-                videoId,
-                titulo
-            );
+            }
+        );
 
-        }
-    );
-
-});
+    }
+);
 
 
-/* ========================================
-   BOTÓN CERRAR
-======================================== */
+/* =========================================
+   PELÍCULAS 6 Y 11
+   DIRECTAMENTE A YOUTUBE
+========================================= */
+
+document
+.querySelectorAll(
+    ".youtube-direct"
+)
+.forEach(
+    function(movie){
+
+        movie.addEventListener(
+            "click",
+            function(){
+
+                const id =
+                    this.dataset.id;
+
+
+                const pelicula =
+                    peliculas[id];
+
+
+                if(!pelicula){
+                    return;
+                }
+
+
+                /*
+                 * Primero se registra
+                 * como visto.
+                 */
+
+                guardarVisto(
+                    id
+                );
+
+
+                /*
+                 * Después va directamente
+                 * al enlace real de YouTube.
+                 */
+
+                window.location.href =
+                    pelicula.url;
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================
+   CERRAR BOTÓN
+========================================= */
 
 closeVideo.addEventListener(
     "click",
@@ -1563,16 +2066,17 @@ closeVideo.addEventListener(
 );
 
 
-/* ========================================
-   CERRAR AL TOCAR EL FONDO
-======================================== */
+/* =========================================
+   CERRAR TOCANDO AFUERA
+========================================= */
 
 videoModal.addEventListener(
     "click",
     function(event){
 
         if(
-            event.target === videoModal
+            event.target ===
+            videoModal
         ){
 
             cerrarVideo();
@@ -1583,9 +2087,9 @@ videoModal.addEventListener(
 );
 
 
-/* ========================================
-   TECLA ESC
-======================================== */
+/* =========================================
+   CERRAR CON ESC
+========================================= */
 
 document.addEventListener(
     "keydown",
@@ -1606,26 +2110,28 @@ document.addEventListener(
 );
 
 
-/* ========================================
-   BOTÓN VER AHORA
-======================================== */
+/* =========================================
+   BOTÓN HERO
+========================================= */
 
 heroPlay.addEventListener(
     "click",
     function(){
 
+        guardarVisto("1");
+
         abrirVideo(
             "oezrSRPoZnY",
-            "Película 1"
+            "EL MISTERIO DEL KHARISIRI"
         );
 
     }
 );
 
 
-/* ========================================
+/* =========================================
    BUSCADOR
-======================================== */
+========================================= */
 
 searchInput.addEventListener(
     "input",
@@ -1636,17 +2142,21 @@ searchInput.addEventListener(
             .toLowerCase()
             .trim();
 
+
         let visible = 0;
 
 
-        movies.forEach(
+        document
+        .querySelectorAll(
+            "#movieGrid .movie"
+        )
+        .forEach(
             function(movie){
 
                 const title =
                     movie
-                    .getAttribute(
-                        "data-title"
-                    )
+                    .dataset
+                    .title
                     .toLowerCase();
 
 
@@ -1670,23 +2180,22 @@ searchInput.addEventListener(
         );
 
 
-        if(visible === 0){
-
-            noResults.style.display =
-                "block";
-
-        }else{
-
-            noResults.style.display =
-                "none";
-
-        }
+        noResults.style.display =
+            visible === 0
+            ? "block"
+            : "none";
 
     }
 );
 
+
+/* =========================================
+   INICIAR TENDENCIAS
+========================================= */
+
+mostrarTendencias();
+
 </script>
 
-
 </body>
-    </html>
+</html>
