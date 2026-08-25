@@ -1,2201 +1,662 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080808">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CINEFLIX | Películas</title>
+  <title>Mantenimiento | CINEFLIX</title>
 
-<style>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+    }
 
-html{
-    scroll-behavior:smooth;
-}
+    body {
+      min-height: 100vh;
 
-body{
-    background:#080808;
-    color:#fff;
-    font-family:Arial,Helvetica,sans-serif;
-}
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-/* =========================================
-   HEADER
-========================================= */
+      font-family: Arial, Helvetica, sans-serif;
 
-.header{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:70px;
-    z-index:1000;
+      color: #ffffff;
 
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    padding:0 5%;
-
-    background:linear-gradient(
-        to bottom,
-        rgba(0,0,0,.98),
-        rgba(0,0,0,.78),
-        transparent
-    );
-}
-
-.logo{
-    color:#e50914;
-    font-size:28px;
-    font-weight:900;
-    letter-spacing:1px;
-}
-
-.nav{
-    display:flex;
-    gap:25px;
-}
-
-.nav a{
-    color:#fff;
-    text-decoration:none;
-    font-size:14px;
-    transition:.2s;
-}
-
-.nav a:hover{
-    color:#e50914;
-}
-
-/* =========================================
-   BUSCADOR
-========================================= */
-
-.search-box input{
-    width:210px;
-    height:38px;
-
-    padding:0 15px;
-
-    background:#151515;
-    border:1px solid #444;
-
-    border-radius:20px;
-
-    color:#fff;
-    outline:none;
-
-    font-size:14px;
-}
-
-.search-box input::placeholder{
-    color:#888;
-}
-
-.search-box input:focus{
-    border-color:#e50914;
-}
-
-/* =========================================
-   HERO
-========================================= */
-
-.hero{
-    min-height:650px;
-    height:78vh;
-
-    display:flex;
-    align-items:center;
-
-    padding:100px 7% 40px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #080808 0%,
-            rgba(8,8,8,.90) 25%,
-            rgba(8,8,8,.45) 65%,
-            rgba(8,8,8,.15) 100%
+      background:
+        radial-gradient(
+          circle at 15% 20%,
+          rgba(255, 0, 0, 0.25),
+          transparent 35%
         ),
-        linear-gradient(
-            0deg,
-            #080808 0%,
-            transparent 40%
+        radial-gradient(
+          circle at 85% 80%,
+          rgba(255, 255, 255, 0.08),
+          transparent 35%
         ),
-        url("https://img.youtube.com/vi/oezrSRPoZnY/0.jpg")
-        center/cover no-repeat;
-}
+        #080808;
 
-.hero-content{
-    width:600px;
-    max-width:100%;
-}
-
-.hero-label{
-    color:#e50914;
-    font-size:15px;
-    font-weight:bold;
-    margin-bottom:15px;
-}
-
-.hero h1{
-    font-size:62px;
-    line-height:1;
-    margin-bottom:20px;
-}
-
-.hero p{
-    max-width:580px;
-    color:#ddd;
-    font-size:16px;
-    line-height:1.6;
-    margin-bottom:25px;
-}
-
-.hero-buttons{
-    display:flex;
-    gap:12px;
-}
-
-.btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-
-    padding:13px 25px;
-
-    border-radius:5px;
-
-    font-size:16px;
-    font-weight:bold;
-
-    text-decoration:none;
-
-    cursor:pointer;
-    transition:.2s;
-}
-
-.btn-play{
-    background:#fff;
-    color:#000;
-    border:0;
-}
-
-.btn-play:hover{
-    background:#ddd;
-}
-
-.btn-info{
-    background:#555;
-    color:#fff;
-}
-
-.btn-info:hover{
-    background:#666;
-}
-
-/* =========================================
-   CONTENIDO
-========================================= */
-
-main{
-    position:relative;
-    margin-top:-40px;
-    z-index:5;
-}
-
-.section{
-    padding:30px 5%;
-}
-
-.section-title{
-    font-size:25px;
-    margin-bottom:20px;
-}
-
-/* =========================================
-   GRID
-========================================= */
-
-.movies{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:18px;
-}
-
-/* =========================================
-   TARJETAS
-========================================= */
-
-.movie{
-    position:relative;
-
-    display:block;
-    overflow:hidden;
-
-    background:#121212;
-
-    border-radius:8px;
-
-    color:#fff;
-    text-decoration:none;
-
-    cursor:pointer;
-
-    transition:
-        transform .25s ease,
-        box-shadow .25s ease;
-}
-
-.movie:hover{
-    transform:scale(1.04);
-
-    box-shadow:
-        0 15px 35px rgba(0,0,0,.75);
-
-    z-index:10;
-}
-
-.youtube-direct{
-    text-decoration:none;
-    color:#fff;
-}
-
-/* =========================================
-   PORTADAS
-========================================= */
-
-.movie-image{
-    position:relative;
-
-    width:100%;
-    aspect-ratio:16/9;
-
-    overflow:hidden;
-
-    background:#181818;
-}
-
-.movie-image img{
-    width:100%;
-    height:100%;
-
-    display:block;
-
-    object-fit:cover;
-
-    transition:transform .4s ease;
-}
-
-.movie:hover .movie-image img{
-    transform:scale(1.06);
-}
-
-/* =========================================
-   PLAY
-========================================= */
-
-.play-overlay{
-    position:absolute;
-    inset:0;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:rgba(0,0,0,.35);
-
-    opacity:0;
-
-    transition:.25s;
-}
-
-.movie:hover .play-overlay{
-    opacity:1;
-}
-
-.play-circle{
-    width:55px;
-    height:55px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:#e50914;
-
-    border-radius:50%;
-
-    font-size:22px;
-}
-
-/* =========================================
-   INFORMACIÓN
-========================================= */
-
-.movie-info{
-    padding:12px;
-}
-
-.movie-info h3{
-    color:#fff;
-    font-size:16px;
-    margin-bottom:6px;
-}
-
-.movie-info p{
-    color:#888;
-    font-size:12px;
-}
-
-/* =========================================
-   NUEVO
-========================================= */
-
-.badge{
-    position:absolute;
-
-    top:9px;
-    left:9px;
-
-    z-index:3;
-
-    padding:6px 9px;
-
-    background:#e50914;
-
-    border-radius:5px;
-
-    font-size:10px;
-    font-weight:bold;
-}
-
-/* =========================================
-   SECCIÓN TENDENCIAS
-========================================= */
-
-.trending-section{
-    display:none;
-
-    padding:10px 5% 40px;
-}
-
-.trending-section.visible{
-    display:block;
-}
-
-.trending-header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    margin-bottom:20px;
-}
-
-.trending-title{
-    font-size:25px;
-    font-weight:bold;
-}
-
-.trending-subtitle{
-    color:#777;
-    font-size:13px;
-}
-
-.trending-movies{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:18px;
-}
-
-/* =========================================
-   BADGE VISTO
-========================================= */
-
-.seen-badge{
-    position:absolute;
-
-    right:9px;
-    top:9px;
-
-    z-index:4;
-
-    padding:6px 9px;
-
-    background:rgba(0,0,0,.80);
-
-    border:1px solid rgba(255,255,255,.25);
-
-    border-radius:5px;
-
-    color:#fff;
-
-    font-size:10px;
-    font-weight:bold;
-}
-
-/* =========================================
-   SIN RESULTADOS
-========================================= */
-
-.no-results{
-    display:none;
-
-    text-align:center;
-
-    padding:60px 20px;
-
-    color:#888;
-
-    font-size:18px;
-}
-
-/* =========================================
-   MODAL
-========================================= */
-
-.video-modal{
-    position:fixed;
-    inset:0;
-
-    width:100%;
-    height:100%;
-
-    z-index:5000;
-
-    display:none;
-
-    align-items:center;
-    justify-content:center;
-
-    padding:20px;
-
-    background:rgba(0,0,0,.92);
-
-    backdrop-filter:blur(5px);
-}
-
-.video-modal.active{
-    display:flex;
-}
-
-.video-box{
-    width:min(1100px,95vw);
-
-    background:#000;
-
-    border-radius:10px;
-
-    overflow:hidden;
-
-    box-shadow:
-        0 25px 80px rgba(0,0,0,.95);
-}
-
-.video-frame{
-    position:relative;
-
-    width:100%;
-    aspect-ratio:16/9;
-
-    background:#000;
-}
-
-.video-frame iframe{
-    position:absolute;
-    inset:0;
-
-    width:100%;
-    height:100%;
-
-    border:0;
-}
-
-.video-title{
-    display:flex;
-
-    align-items:center;
-    justify-content:space-between;
-
-    gap:15px;
-
-    padding:13px 16px;
-
-    background:#111;
-}
-
-.video-title h2{
-    color:#fff;
-    font-size:18px;
-}
-
-.close-video{
-    width:38px;
-    height:38px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border:0;
-    border-radius:50%;
-
-    background:#e50914;
-    color:#fff;
-
-    font-size:20px;
-
-    cursor:pointer;
-}
-
-.close-video:hover{
-    background:#b20710;
-}
-
-/* =========================================
-   FOOTER
-========================================= */
-
-footer{
-    margin-top:30px;
-
-    padding:40px 20px;
-
-    background:#050505;
-
-    color:#666;
-
-    text-align:center;
-
-    font-size:13px;
-}
-
-/* =========================================
-   TABLET
-========================================= */
-
-@media(max-width:1100px){
-
-    .movies,
-    .trending-movies{
-        grid-template-columns:repeat(3,1fr);
+      overflow: hidden;
     }
 
-}
+    /* ==============================
+       FONDO
+    ============================== */
 
-/* =========================================
-   CELULAR
-========================================= */
+    .stars,
+    .stars::before,
+    .stars::after {
+      position: fixed;
+      inset: 0;
 
-@media(max-width:800px){
+      content: "";
 
-    .header{
-        height:62px;
-        padding:0 15px;
+      pointer-events: none;
+
+      background-image:
+        radial-gradient(
+          2px 2px at 20% 30%,
+          rgba(255,255,255,.85),
+          transparent
+        ),
+        radial-gradient(
+          1px 1px at 70% 20%,
+          rgba(255,255,255,.75),
+          transparent
+        ),
+        radial-gradient(
+          1px 1px at 40% 80%,
+          rgba(255,255,255,.65),
+          transparent
+        ),
+        radial-gradient(
+          2px 2px at 85% 55%,
+          rgba(255,0,0,.85),
+          transparent
+        ),
+        radial-gradient(
+          1px 1px at 10% 75%,
+          rgba(255,255,255,.7),
+          transparent
+        );
+
+      background-size: 280px 280px;
+
+      animation:
+        estrellas 18s linear infinite;
     }
 
-    .logo{
-        font-size:22px;
+    .stars::before {
+      animation-duration: 28s;
+      opacity: .45;
     }
 
-    .nav{
-        display:none;
+    .stars::after {
+      animation-duration: 38s;
+      opacity: .25;
     }
 
-    .search-box input{
-        width:150px;
-        height:34px;
+    @keyframes estrellas {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(-280px);
+      }
     }
 
-    .hero{
-        min-height:570px;
-        height:70vh;
+    /* ==============================
+       TARJETA
+    ============================== */
 
-        padding:100px 20px 40px;
+    .card {
+      width: min(92%, 720px);
 
-        background:
-            linear-gradient(
-                0deg,
-                #080808 5%,
-                rgba(8,8,8,.45) 65%,
-                rgba(8,8,8,.65) 100%
-            ),
-            url("https://img.youtube.com/vi/oezrSRPoZnY/0.jpg")
-            center/cover no-repeat;
+      padding: 55px 30px;
+
+      text-align: center;
+
+      position: relative;
+
+      z-index: 2;
+
+      border-radius: 28px;
+
+      border: 1px solid rgba(255,255,255,.15);
+
+      background: rgba(12,12,12,.90);
+
+      box-shadow:
+        0 25px 80px rgba(0,0,0,.75),
+        0 0 60px rgba(255,0,0,.13),
+        inset 0 1px 0 rgba(255,255,255,.08);
+
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
     }
 
-    .hero h1{
-        font-size:42px;
+    /* ==============================
+       LOGO
+    ============================== */
+
+    .logo {
+      width: 88px;
+      height: 88px;
+
+      margin: 0 auto 25px;
+
+      border-radius: 24px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      font-size: 34px;
+
+      font-weight: 900;
+
+      color: #ffffff;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ff0000,
+          #a50000
+        );
+
+      box-shadow:
+        0 0 45px
+        rgba(255,0,0,.45);
+
+      animation:
+        pulso 2s infinite;
     }
 
-    .hero p{
-        font-size:14px;
+    @keyframes pulso {
+
+      0%,
+      100% {
+        transform: scale(1);
+
+        box-shadow:
+          0 0 25px
+          rgba(255,0,0,.35);
+      }
+
+      50% {
+        transform: scale(1.04);
+
+        box-shadow:
+          0 0 55px
+          rgba(255,0,0,.75);
+      }
     }
 
-    .section{
-        padding:25px 15px;
+    /* ==============================
+       BADGE
+    ============================== */
+
+    .badge {
+      display: inline-block;
+
+      padding: 9px 18px;
+
+      border-radius: 999px;
+
+      font-size: 12px;
+
+      font-weight: 800;
+
+      letter-spacing: 2px;
+
+      color: #ffffff;
+
+      background:
+        rgba(255,0,0,.12);
+
+      border:
+        1px solid
+        rgba(255,0,0,.5);
+
+      margin-bottom: 22px;
     }
 
-    .section-title{
-        font-size:23px;
+    /* ==============================
+       TITULO
+    ============================== */
+
+    h1 {
+      font-size:
+        clamp(38px, 9vw, 72px);
+
+      letter-spacing: 3px;
+
+      margin-bottom: 15px;
+
+      color: #ffffff;
     }
 
-    .movies,
-    .trending-movies{
-        grid-template-columns:repeat(2,1fr);
-        gap:12px;
+    h1 span {
+      color: #ff1111;
     }
 
-    .movie-info{
-        padding:10px;
+    /* ==============================
+       TEXTO
+    ============================== */
+
+    .description {
+      color: #d0d0d0;
+
+      font-size: 16px;
+
+      line-height: 1.7;
+
+      max-width: 550px;
+
+      margin: 0 auto;
     }
 
-    .movie-info h3{
-        font-size:14px;
+    /* ==============================
+       BARRA
+    ============================== */
+
+    .progress-container {
+      width:
+        min(440px, 88%);
+
+      height: 14px;
+
+      margin:
+        35px auto 0;
+
+      padding: 2px;
+
+      background: #1d1d1d;
+
+      border:
+        1px solid #444;
+
+      border-radius: 50px;
+
+      overflow: hidden;
+
+      box-shadow:
+        0 0 18px
+        rgba(255,0,0,.18);
     }
 
-    .trending-section{
-        padding:10px 15px 30px;
+    .progress-bar {
+      width: 0%;
+
+      height: 100%;
+
+      border-radius: 50px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #ff0000,
+          #ffffff,
+          #ff0000
+        );
+
+      box-shadow:
+        0 0 18px
+        rgba(255,0,0,.85);
+
+      transition:
+        width 1s linear;
     }
 
-    .trending-title{
-        font-size:22px;
+    /* ==============================
+       PORCENTAJE
+    ============================== */
+
+    .percentage {
+      margin-top: 12px;
+
+      color: #ff0000;
+
+      font-size: 22px;
+
+      font-weight: 800;
+
+      letter-spacing: 1px;
+
+      text-shadow:
+        0 0 12px
+        rgba(255,0,0,.45);
     }
 
-    .trending-subtitle{
-        font-size:11px;
+    /* ==============================
+       MENSAJE
+    ============================== */
+
+    .small {
+      margin-top: 20px;
+
+      font-size: 13px;
+
+      color: #888888;
+
+      line-height: 1.6;
     }
 
-    .video-modal{
-        padding:12px;
+    /* ==============================
+       FOOTER
+    ============================== */
+
+    footer {
+      margin-top: 28px;
+
+      color: #555555;
+
+      font-size: 12px;
     }
 
-    .video-box{
-        width:100%;
-        border-radius:7px;
+    footer strong {
+      color: #ff0000;
     }
 
-    .video-title h2{
-        font-size:15px;
+    /* ==============================
+       CELULAR
+    ============================== */
+
+    @media (max-width: 480px) {
+
+      .card {
+        width: 92%;
+
+        padding: 42px 20px;
+
+        border-radius: 22px;
+      }
+
+      .logo {
+        width: 72px;
+        height: 72px;
+
+        font-size: 27px;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+
+      .description {
+        font-size: 15px;
+      }
+
+      .progress-container {
+        width: 90%;
+      }
     }
 
-    .close-video{
-        width:34px;
-        height:34px;
-        font-size:17px;
-    }
-
-}
-
-/* =========================================
-   CELULAR PEQUEÑO
-========================================= */
-
-@media(max-width:450px){
-
-    .search-box input{
-        width:125px;
-    }
-
-    .hero{
-        min-height:530px;
-    }
-
-    .hero h1{
-        font-size:35px;
-    }
-
-    .hero-buttons{
-        flex-wrap:wrap;
-    }
-
-    .btn{
-        padding:11px 18px;
-        font-size:14px;
-    }
-
-    .movies,
-    .trending-movies{
-        gap:9px;
-    }
-
-    .movie-info h3{
-        font-size:13px;
-    }
-
-    .trending-header{
-        display:block;
-    }
-
-    .trending-subtitle{
-        display:block;
-        margin-top:5px;
-    }
-
-}
-
-</style>
+  </style>
 </head>
 
 <body>
 
+  <!-- FONDO -->
 
-<!-- =========================================
-     HEADER
-========================================= -->
+  <div class="stars"></div>
 
-<header class="header">
+
+  <!-- CONTENIDO -->
+
+  <main class="card">
+
+    <!-- LOGO -->
 
     <div class="logo">
-        CINEFLIX
+      CF
     </div>
 
-    <nav class="nav">
 
-        <a href="#inicio">
-            Inicio
-        </a>
+    <!-- ESTADO -->
 
-        <a href="#peliculas">
-            Películas
-        </a>
-
-        <a href="#tendencias">
-            Tendencias
-        </a>
-
-    </nav>
-
-    <div class="search-box">
-
-        <input
-            type="text"
-            id="searchInput"
-            placeholder="🔎 Buscar..."
-            autocomplete="off"
-        >
-
+    <div class="badge">
+      MANTENIMIENTO
     </div>
 
-</header>
+
+    <!-- NOMBRE -->
+
+    <h1>
+      CINE<span>FLIX</span>
+    </h1>
 
 
-<!-- =========================================
-     HERO
-========================================= -->
+    <!-- MENSAJE -->
 
-<section
-    class="hero"
-    id="inicio"
->
+    <p class="description">
 
-    <div class="hero-content">
+      Estamos realizando algunas mejoras
+      en nuestra plataforma para ofrecerte
+      una experiencia más rápida, moderna y segura.
 
-        <div class="hero-label">
-            🎬 PELÍCULA DESTACADA
-        </div>
+    </p>
 
-        <h1>
-            CINEFLIX
-        </h1>
 
-        <p>
-            Disfruta de nuestras películas y descubre
-            nuevas historias para disfrutar.
-        </p>
+    <!-- BARRA DE PROGRESO -->
 
-        <div class="hero-buttons">
+    <div class="progress-container">
 
-            <button
-                type="button"
-                class="btn btn-play"
-                id="heroPlay"
-            >
-                ▶ Ver ahora
-            </button>
-
-            <a
-                href="#peliculas"
-                class="btn btn-info"
-            >
-                ℹ Ver catálogo
-            </a>
-
-        </div>
+      <div
+        class="progress-bar"
+        id="progressBar">
+      </div>
 
     </div>
 
-</section>
 
-
-<!-- =========================================
-     PELÍCULAS
-========================================= -->
-
-<main>
-
-<section
-    class="section"
-    id="peliculas"
->
-
-    <h2 class="section-title">
-        🎬 Películas disponibles
-    </h2>
-
+    <!-- PORCENTAJE -->
 
     <div
-        class="movies"
-        id="movieGrid"
-    >
+      class="percentage"
+      id="progressText">
 
-
-        <!-- PELÍCULA 1 -->
-
-        <article
-            class="movie"
-            data-id="1"
-            data-title="EL MISTERIO DEL KHARISIRI"
-            data-video="oezrSRPoZnY"
-        >
-
-            <div class="movie-image">
-
-                <span class="badge">
-                    NUEVO
-                </span>
-
-                <img
-                    src="https://img.youtube.com/vi/oezrSRPoZnY/0.jpg"
-                    alt="EL MISTERIO DEL KHARISIRI"
-                    loading="eager"
-                >
-
-                <div class="play-overlay">
-                    <div class="play-circle">▶</div>
-                </div>
-
-            </div>
-
-            <div class="movie-info">
-
-                <h3>
-                    EL MISTERIO DEL KHARISIRI
-                </h3>
-
-                <p>
-                    Película • HD
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- PELÍCULA 2 -->
-
-        <article
-            class="movie"
-            data-id="2"
-            data-title="DESTINO DE LOS POBRES"
-            data-video="tTChOuwrxwk"
-        >
-
-            <div class="movie-image">
-
-                <span class="badge">
-                    NUEVO
-                </span>
-
-                <img
-                    src="https://img.youtube.com/vi/tTChOuwrxwk/0.jpg"
-                    alt="DESTINO DE LOS POBRES"
-                    loading="lazy"
-                >
-
-                <div class="play-overlay">
-                    <div class="play-circle">▶</div>
-                </div>
-
-            </div>
-
-            <div class="movie-info">
-
-                <h3>
-                    DESTINO DE LOS POBRES
-                </h3>
-
-                <p>
-                    Película • HD
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- PELÍCULA 3 -->
-
-        <article
-            class="movie"
-            data-id="3"
-            data-title="MATAR PARA VIVIR"
-            data-video="gXJEHMWuIAo"
-        >
-
-            <div class="movie-image">
-
-                <span class="badge">
-                    NUEVO
-                </span>
-
-                <img
-                    src="https://img.youtube.com/vi/gXJEHMWuIAo/0.jpg"
-                    alt="MATAR PARA VIVIR"
-                    loading="lazy"
-                >
-
-                <div class="play-overlay">
-                    <div class="play-circle">▶</div>
-                </div>
-
-            </div>
-
-            <div class="movie-info">
-
-                <h3>
-                    MATAR PARA VIVIR
-                </h3>
-
-                <p>
-                    Película • HD
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- PELÍCULA 4 -->
-
-        <article
-            class="movie"
-            data-id="4"
-            data-title="LA CASA EMBRUJADA"
-            data-video="vwwxe0lWomI"
-        >
-
-            <div class="movie-image">
-
-                <span class="badge">
-                    NUEVO
-                </span>
-
-                <img
-                    src="https://img.youtube.com/vi/vwwxe0lWomI/0.jpg"
-                    alt="LA CASA EMBRUJADA"
-                    loading="lazy"
-                >
-
-                <div class="play-overlay">
-                    <div class="play-circle">▶</div>
-                </div>
-
-            </div>
-
-            <div class="movie-info">
-
-                <h3>
-                    LA CASA EMBRUJADA
-                </h3>
-
-                <p>
-                    Película • HD
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- PELÍCULA 5 -->
-
-        <article
-            class="movie"
-            data-id="5"
-            data-title="LA MADRE"
-            data-video="AdEoI4Q9Yis"
-        >
-
-            <div class="movie-image">
-
-                <span class="badge">
-                    NUEVO
-                </span>
-
-                <img
-                    src="https://img.youtube.com/vi/AdEoI4Q9Yis/0.jpg"
-                    alt="LA MADRE"
-                    loading="lazy"
-                >
-
-                <div class="play-overlay">
-                    <div class="play-circle">▶</div>
-                </div>
-
-            </div>
-
-            <div class="movie-info">
-
-                <h3>
-                    LA MADRE
-                </h3>
-
-                <p>
-                    Película • HD
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- PELÍCULA 6
-             DIRECTAMENTE A YOUTUBE -->
-
-        <a
-            class="movie youtube-direct"
-            data-id="6"
-            data-title="PERDONE DE HIJO"
-            href="https://youtu.be/AwZYHTDvHc4"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="movie-image">
-
-                <span class="badge">
-                    NUEVO
-                </span>
-
-                <img
-                    src="https://img.youtube.com/vi/AwZYHTDvHc4/0.jpg"
-                    alt="PERDONE DE HIJO"
-                    loading="lazy"
-                >
-
-                <div class="play-overlay">
-                    <div class="play-circle">▶</div>
-                </div>
-
-            </div>
-
-            <div class="movie-info">
-
-                <h3>
-                    PERDONE DE HIJO
-                </h3>
-
-                <p>
-                    Película • HD
-                </p>
-
-            </div>
-
-        </a>
-
-
-        <!-- PELÍCULA 7 -->
-
-        <article
-            class="movie"
-            data-id="7"
-            data-title="HIJASTRA MALCRIADA"
-            data-video="9pEy9zzUjt8"
-        >
-
-            <div class="movie-image">
-
-                <span class="badge">
-                    NUEVO
-                </span>
-
-                <img
-                    src="https://img.youtube.com/vi/9pEy9zzUjt8/0.jpg"
-                    alt="HIJASTRA MALCRIADA"
-                    loading="lazy"
-                >
-
-                <div class="play-overlay">
-                    <div class="play-circle">▶</div>
-                </div>
-
-            </div>
-
-            <div class="movie-info">
-
-                <h3>
-                    HIJASTRA MALCRIADA
-                </h3>
-
-                <p>
-                    Película • HD
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- PELÍCULA 8 -->
-
-        <article
-            class="movie"
-            data-id="8"
-            data-title="LA PELIGROSA"
-            data-video="A_0dyyJL0mU"
-        >
-
-            <div class="movie-image">
-
-                <span class="badge">
-                    NUEVO
-                </span>
-
-                <img
-                    src="https://img.youtube.com/vi/A_0dyyJL0mU/maxresdefault.jpg"
-                    alt="LA PELIGROSA"
-                    loading="lazy"
-                    onerror="
-                        this.onerror=null;
-                        this.src='https://img.youtube.com/vi/A_0dyyJL0mU/0.jpg';
-                    "
-                >
-
-                <div class="play-overlay">
-                    <div class="play-circle">▶</div>
-                </div>
-
-            </div>
-
-            <div class="movie-info">
-
-                <h3>
-                    LA PELIGROSA
-                </h3>
-
-                <p>
-                    Película • HD
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- PELÍCULA 9 -->
-
-        <article
-            class="movie"
-            data-id="9"
-            data-title="LA FUERZA DEL CONDOR"
-            data-video="-Ld2sE1aGc0"
-        >
-
-            <div class="movie-image">
-
-                <span class="badge">
-                    NUEVO
-                </span>
-
-                <img
-                    src="https://img.youtube.com/vi/-Ld2sE1aGc0/0.jpg"
-                    alt="LA FUERZA DEL CONDOR"
-                    loading="lazy"
-                >
-
-                <div class="play-overlay">
-                    <div class="play-circle">▶</div>
-                </div>
-
-            </div>
-
-            <div class="movie-info">
-
-                <h3>
-                    LA FUERZA DEL CONDOR
-                </h3>
-
-                <p>
-                    Película • HD
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- PELÍCULA 10 -->
-
-        <article
-            class="movie"
-            data-id="10"
-            data-title="WINAYA PACHA"
-            data-video="RgfTg591iPg"
-        >
-
-            <div class="movie-image">
-
-                <span class="badge">
-                    NUEVO
-                </span>
-
-                <img
-                    src="https://img.youtube.com/vi/RgfTg591iPg/0.jpg"
-                    alt="WINAYA PACHA"
-                    loading="lazy"
-                >
-
-                <div class="play-overlay">
-                    <div class="play-circle">▶</div>
-                </div>
-
-            </div>
-
-            <div class="movie-info">
-
-                <h3>
-                    WINAYA PACHA
-                </h3>
-
-                <p>
-                    Película • HD
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- PELÍCULA 11
-             DIRECTAMENTE A YOUTUBE -->
-
-        <a
-            class="movie youtube-direct"
-            data-id="11"
-            data-title="MAX Y NIKE"
-            href="https://youtu.be/IZDZrdwKQ0M"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="movie-image">
-
-                <span class="badge">
-                    NUEVO
-                </span>
-
-                <img
-                    src="https://img.youtube.com/vi/IZDZrdwKQ0M/0.jpg"
-                    alt="MAX Y NIKE"
-                    loading="lazy"
-                >
-
-                <div class="play-overlay">
-                    <div class="play-circle">▶</div>
-                </div>
-
-            </div>
-
-            <div class="movie-info">
-
-                <h3>
-                    MAX Y NIKE
-                </h3>
-
-                <p>
-                    Película • HD
-                </p>
-
-            </div>
-
-        </a>
-
-
-        <!-- PELÍCULA 12 -->
-
-        <article
-            class="movie"
-            data-id="12"
-            data-title="LAS TRES ROSAS"
-            data-video="DmZyDrEyjJY"
-        >
-
-            <div class="movie-image">
-
-                <span class="badge">
-                    NUEVO
-                </span>
-
-                <img
-                    src="https://img.youtube.com/vi/DmZyDrEyjJY/0.jpg"
-                    alt="LAS TRES ROSAS"
-                    loading="lazy"
-                >
-
-                <div class="play-overlay">
-                    <div class="play-circle">▶</div>
-                </div>
-
-            </div>
-
-            <div class="movie-info">
-
-                <h3>
-                    LAS TRES ROSAS
-                </h3>
-
-                <p>
-                    Película • HD
-                </p>
-
-            </div>
-
-        </article>
-
+      0%
 
     </div>
 
 
-    <!-- SIN RESULTADOS -->
+    <!-- MENSAJE INFERIOR -->
 
-    <div
-        class="no-results"
-        id="noResults"
-    >
-        😔 No encontramos ninguna película.
-    </div>
+    <div class="small">
 
-</section>
-
-
-<!-- =========================================
-     TENDENCIAS / VISTOS
-========================================= -->
-
-<section
-    class="trending-section"
-    id="tendencias"
->
-
-    <div class="trending-header">
-
-        <div>
-
-            <h2 class="trending-title">
-                🔥 Tendencias
-            </h2>
-
-            <span class="trending-subtitle">
-                Películas que has visto recientemente
-            </span>
-
-        </div>
+      Volveremos muy pronto.
+      Gracias por tu paciencia.
 
     </div>
 
 
-    <div
-        class="trending-movies"
-        id="trendingMovies"
-    >
+    <!-- FOOTER -->
 
-    </div>
+    <footer>
 
-</section>
+      © 2026
+      <strong>CINEFLIX</strong>
+      · Todos los derechos reservados
 
+    </footer>
 
-</main>
-
-
-<!-- =========================================
-     REPRODUCTOR
-========================================= -->
-
-<div
-    class="video-modal"
-    id="videoModal"
-    aria-hidden="true"
->
-
-    <div
-        class="video-box"
-        role="dialog"
-        aria-modal="true"
-    >
-
-        <div class="video-frame">
-
-            <iframe
-                id="youtubePlayer"
-                src=""
-                title="Reproductor de YouTube"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen>
-            </iframe>
-
-        </div>
-
-        <div class="video-title">
-
-            <h2 id="videoTitle">
-                Película
-            </h2>
-
-            <button
-                type="button"
-                class="close-video"
-                id="closeVideo"
-                aria-label="Cerrar reproductor"
-            >
-                ✕
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
+  </main>
 
 
-<!-- =========================================
-     FOOTER
-========================================= -->
+  <script>
 
-<footer>
+    /*
+      ======================================
+      PERIODO DE MANTENIMIENTO
+      ======================================
 
-    © 2026 CINEFLIX
+      Inicio:
+      24 de agosto de 2026
 
-    <br><br>
-
-    Plataforma de películas
-
-</footer>
-
-
-<script>
-
-/* =========================================
-   ELEMENTOS
-========================================= */
-
-const videoModal =
-    document.getElementById("videoModal");
-
-const youtubePlayer =
-    document.getElementById("youtubePlayer");
-
-const videoTitle =
-    document.getElementById("videoTitle");
-
-const closeVideo =
-    document.getElementById("closeVideo");
-
-const searchInput =
-    document.getElementById("searchInput");
-
-const noResults =
-    document.getElementById("noResults");
-
-const heroPlay =
-    document.getElementById("heroPlay");
-
-const trendingSection =
-    document.getElementById("tendencias");
-
-const trendingMovies =
-    document.getElementById("trendingMovies");
+      Final:
+      24 de septiembre de 2026
+    */
 
 
-/* =========================================
-   DATOS DE LAS PELÍCULAS
-========================================= */
-
-const peliculas = {
-
-    "1":{
-        id:"1",
-        title:"EL MISTERIO DEL KHARISIRI",
-        video:"oezrSRPoZnY",
-        image:"https://img.youtube.com/vi/oezrSRPoZnY/0.jpg",
-        youtube:false
-    },
-
-    "2":{
-        id:"2",
-        title:"DESTINO DE LOS POBRES",
-        video:"tTChOuwrxwk",
-        image:"https://img.youtube.com/vi/tTChOuwrxwk/0.jpg",
-        youtube:false
-    },
-
-    "3":{
-        id:"3",
-        title:"MATAR PARA VIVIR",
-        video:"gXJEHMWuIAo",
-        image:"https://img.youtube.com/vi/gXJEHMWuIAo/0.jpg",
-        youtube:false
-    },
-
-    "4":{
-        id:"4",
-        title:"LA CASA EMBRUJADA",
-        video:"vwwxe0lWomI",
-        image:"https://img.youtube.com/vi/vwwxe0lWomI/0.jpg",
-        youtube:false
-    },
-
-    "5":{
-        id:"5",
-        title:"LA MADRE",
-        video:"AdEoI4Q9Yis",
-        image:"https://img.youtube.com/vi/AdEoI4Q9Yis/0.jpg",
-        youtube:false
-    },
-
-    "6":{
-        id:"6",
-        title:"PERDONE DE HIJO",
-        video:"AwZYHTDvHc4",
-        image:"https://img.youtube.com/vi/AwZYHTDvHc4/0.jpg",
-        youtube:true,
-        url:"https://youtu.be/AwZYHTDvHc4"
-    },
-
-    "7":{
-        id:"7",
-        title:"HIJASTRA MALCRIADA",
-        video:"9pEy9zzUjt8",
-        image:"https://img.youtube.com/vi/9pEy9zzUjt8/0.jpg",
-        youtube:false
-    },
-
-    "8":{
-        id:"8",
-        title:"LA PELIGROSA",
-        video:"A_0dyyJL0mU",
-        image:"https://img.youtube.com/vi/A_0dyyJL0mU/maxresdefault.jpg",
-        fallback:"https://img.youtube.com/vi/A_0dyyJL0mU/0.jpg",
-        youtube:false
-    },
-
-    "9":{
-        id:"9",
-        title:"LA FUERZA DEL CONDOR",
-        video:"-Ld2sE1aGc0",
-        image:"https://img.youtube.com/vi/-Ld2sE1aGc0/0.jpg",
-        youtube:false
-    },
-
-    "10":{
-        id:"10",
-        title:"WINAYA PACHA",
-        video:"RgfTg591iPg",
-        image:"https://img.youtube.com/vi/RgfTg591iPg/0.jpg",
-        youtube:false
-    },
-
-    "11":{
-        id:"11",
-        title:"MAX Y NIKE",
-        video:"IZDZrdwKQ0M",
-        image:"https://img.youtube.com/vi/IZDZrdwKQ0M/0.jpg",
-        youtube:true,
-        url:"https://youtu.be/IZDZrdwKQ0M"
-    },
-
-    "12":{
-        id:"12",
-        title:"LAS TRES ROSAS",
-        video:"DmZyDrEyjJY",
-        image:"https://img.youtube.com/vi/DmZyDrEyjJY/0.jpg",
-        youtube:false
-    }
-
-};
+    const fechaInicio =
+      new Date(
+        2026,
+        7,
+        24,
+        0,
+        0,
+        0
+      );
 
 
-/* =========================================
-   GUARDAR VISTO
-========================================= */
+    const fechaFinal =
+      new Date(
+        2026,
+        8,
+        24,
+        0,
+        0,
+        0
+      );
 
-function guardarVisto(id){
 
-    let vistos = [];
+    /*
+      ACTUALIZAR PROGRESO
+    */
 
-    try{
+    function actualizarProgreso() {
 
-        vistos =
-            JSON.parse(
-                localStorage.getItem(
-                    "cineflix_vistos"
-                )
-            ) || [];
+      const ahora =
+        new Date();
 
-    }catch(error){
 
-        vistos = [];
+      let progreso = 0;
+
+
+      /*
+        Antes del inicio
+      */
+
+      if (
+        ahora.getTime() <=
+        fechaInicio.getTime()
+      ) {
+
+        progreso = 0;
+
+      }
+
+
+      /*
+        Después del final
+      */
+
+      else if (
+        ahora.getTime() >=
+        fechaFinal.getTime()
+      ) {
+
+        progreso = 100;
+
+      }
+
+
+      /*
+        Durante el mantenimiento
+      */
+
+      else {
+
+        const total =
+          fechaFinal.getTime() -
+          fechaInicio.getTime();
+
+
+        const transcurrido =
+          ahora.getTime() -
+          fechaInicio.getTime();
+
+
+        progreso =
+          (
+            transcurrido /
+            total
+          ) * 100;
+
+      }
+
+
+      /*
+        Mantener entre 0 y 100
+      */
+
+      progreso =
+        Math.max(
+          0,
+          Math.min(
+            100,
+            progreso
+          )
+        );
+
+
+      /*
+        Porcentaje entero
+      */
+
+      const porcentaje =
+        Math.floor(progreso);
+
+
+      /*
+        Barra
+      */
+
+      document.getElementById(
+        "progressBar"
+      ).style.width =
+        progreso + "%";
+
+
+      /*
+        Texto
+      */
+
+      document.getElementById(
+        "progressText"
+      ).textContent =
+        porcentaje + "%";
 
     }
 
 
     /*
-     * Quitamos el elemento si ya existía
-     * para colocarlo nuevamente al principio.
-     */
+      Ejecutar al abrir
+    */
 
-    vistos =
-        vistos.filter(
-            item => item !== id
-        );
+    actualizarProgreso();
 
 
     /*
-     * El más reciente queda primero.
-     */
+      Actualizar cada minuto
+    */
 
-    vistos.unshift(id);
-
-
-    /*
-     * Guardamos máximo 12.
-     */
-
-    vistos =
-        vistos.slice(0,12);
-
-
-    localStorage.setItem(
-        "cineflix_vistos",
-        JSON.stringify(vistos)
+    setInterval(
+      actualizarProgreso,
+      60000
     );
 
-
-    mostrarTendencias();
-
-}
-
-
-/* =========================================
-   OBTENER VISTOS
-========================================= */
-
-function obtenerVistos(){
-
-    try{
-
-        return JSON.parse(
-            localStorage.getItem(
-                "cineflix_vistos"
-            )
-        ) || [];
-
-    }catch(error){
-
-        return [];
-
-    }
-
-}
-
-
-/* =========================================
-   CREAR TARJETA DE TENDENCIA
-========================================= */
-
-function crearTarjetaTendencia(pelicula){
-
-    const card =
-        document.createElement(
-            "article"
-        );
-
-    card.className =
-        "movie";
-
-    card.innerHTML = `
-
-        <div class="movie-image">
-
-            <span class="seen-badge">
-                ✓ VISTO
-            </span>
-
-            <img
-                src="${pelicula.image}"
-                alt="${pelicula.title}"
-                loading="lazy"
-            >
-
-            <div class="play-overlay">
-
-                <div class="play-circle">
-                    ▶
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="movie-info">
-
-            <h3>
-                ${pelicula.title}
-            </h3>
-
-            <p>
-                Visto recientemente
-            </p>
-
-        </div>
-
-    `;
-
-
-    /*
-     * Si es película 8 y no carga
-     * la portada grande, usa la pequeña.
-     */
-
-    const img =
-        card.querySelector("img");
-
-    if(pelicula.fallback){
-
-        img.onerror =
-            function(){
-
-                this.onerror = null;
-
-                this.src =
-                    pelicula.fallback;
-
-            };
-
-    }
-
-
-    /*
-     * Al tocar una tendencia,
-     * vuelve a abrir la película.
-     */
-
-    card.addEventListener(
-        "click",
-        function(){
-
-            guardarVisto(
-                pelicula.id
-            );
-
-
-            if(pelicula.youtube){
-
-                window.location.href =
-                    pelicula.url;
-
-                return;
-
-            }
-
-
-            abrirVideo(
-                pelicula.video,
-                pelicula.title
-            );
-
-        }
-    );
-
-
-    return card;
-
-}
-
-
-/* =========================================
-   MOSTRAR TENDENCIAS
-========================================= */
-
-function mostrarTendencias(){
-
-    trendingMovies.innerHTML = "";
-
-
-    const vistos =
-        obtenerVistos();
-
-
-    if(vistos.length === 0){
-
-        trendingSection.classList.remove(
-            "visible"
-        );
-
-        return;
-
-    }
-
-
-    trendingSection.classList.add(
-        "visible"
-    );
-
-
-    vistos.forEach(
-        function(id){
-
-            const pelicula =
-                peliculas[id];
-
-            if(!pelicula){
-                return;
-            }
-
-
-            const tarjeta =
-                crearTarjetaTendencia(
-                    pelicula
-                );
-
-
-            trendingMovies.appendChild(
-                tarjeta
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================
-   ABRIR VIDEO
-========================================= */
-
-function abrirVideo(
-    videoId,
-    titulo
-){
-
-    videoTitle.textContent =
-        titulo;
-
-
-    youtubePlayer.src =
-        "https://www.youtube.com/embed/" +
-        videoId +
-        "?autoplay=1&rel=0";
-
-
-    videoModal.classList.add(
-        "active"
-    );
-
-
-    videoModal.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-
-    document.body.style.overflow =
-        "hidden";
-
-}
-
-
-/* =========================================
-   CERRAR VIDEO
-========================================= */
-
-function cerrarVideo(){
-
-    youtubePlayer.src =
-        "";
-
-
-    videoModal.classList.remove(
-        "active"
-    );
-
-
-    videoModal.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-
-    document.body.style.overflow =
-        "";
-
-}
-
-
-/* =========================================
-   PELÍCULAS NORMALES
-========================================= */
-
-document
-.querySelectorAll(
-    ".movie:not(.youtube-direct)"
-)
-.forEach(
-    function(movie){
-
-        movie.addEventListener(
-            "click",
-            function(){
-
-                const id =
-                    this.dataset.id;
-
-
-                const pelicula =
-                    peliculas[id];
-
-
-                if(!pelicula){
-                    return;
-                }
-
-
-                /*
-                 * Guardamos como visto.
-                 */
-
-                guardarVisto(
-                    id
-                );
-
-
-                /*
-                 * Abrimos reproductor.
-                 */
-
-                abrirVideo(
-                    pelicula.video,
-                    pelicula.title
-                );
-
-            }
-        );
-
-    }
-);
-
-
-/* =========================================
-   PELÍCULAS 6 Y 11
-   DIRECTAMENTE A YOUTUBE
-========================================= */
-
-document
-.querySelectorAll(
-    ".youtube-direct"
-)
-.forEach(
-    function(movie){
-
-        movie.addEventListener(
-            "click",
-            function(){
-
-                const id =
-                    this.dataset.id;
-
-
-                const pelicula =
-                    peliculas[id];
-
-
-                if(!pelicula){
-                    return;
-                }
-
-
-                /*
-                 * Primero se registra
-                 * como visto.
-                 */
-
-                guardarVisto(
-                    id
-                );
-
-
-                /*
-                 * Después va directamente
-                 * al enlace real de YouTube.
-                 */
-
-                window.location.href =
-                    pelicula.url;
-
-            }
-        );
-
-    }
-);
-
-
-/* =========================================
-   CERRAR BOTÓN
-========================================= */
-
-closeVideo.addEventListener(
-    "click",
-    cerrarVideo
-);
-
-
-/* =========================================
-   CERRAR TOCANDO AFUERA
-========================================= */
-
-videoModal.addEventListener(
-    "click",
-    function(event){
-
-        if(
-            event.target ===
-            videoModal
-        ){
-
-            cerrarVideo();
-
-        }
-
-    }
-);
-
-
-/* =========================================
-   CERRAR CON ESC
-========================================= */
-
-document.addEventListener(
-    "keydown",
-    function(event){
-
-        if(
-            event.key === "Escape" &&
-            videoModal.classList.contains(
-                "active"
-            )
-        ){
-
-            cerrarVideo();
-
-        }
-
-    }
-);
-
-
-/* =========================================
-   BOTÓN HERO
-========================================= */
-
-heroPlay.addEventListener(
-    "click",
-    function(){
-
-        guardarVisto("1");
-
-        abrirVideo(
-            "oezrSRPoZnY",
-            "EL MISTERIO DEL KHARISIRI"
-        );
-
-    }
-);
-
-
-/* =========================================
-   BUSCADOR
-========================================= */
-
-searchInput.addEventListener(
-    "input",
-    function(){
-
-        const search =
-            this.value
-            .toLowerCase()
-            .trim();
-
-
-        let visible = 0;
-
-
-        document
-        .querySelectorAll(
-            "#movieGrid .movie"
-        )
-        .forEach(
-            function(movie){
-
-                const title =
-                    movie
-                    .dataset
-                    .title
-                    .toLowerCase();
-
-
-                if(
-                    title.includes(search)
-                ){
-
-                    movie.style.display =
-                        "";
-
-                    visible++;
-
-                }else{
-
-                    movie.style.display =
-                        "none";
-
-                }
-
-            }
-        );
-
-
-        noResults.style.display =
-            visible === 0
-            ? "block"
-            : "none";
-
-    }
-);
-
-
-/* =========================================
-   INICIAR TENDENCIAS
-========================================= */
-
-mostrarTendencias();
-
-</script>
+  </script>
 
 </body>
 </html>
