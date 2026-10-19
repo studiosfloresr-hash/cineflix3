@@ -4,368 +4,396 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#090817">
-<meta name="description" content="CINEFLIX: descubre entretenimiento y descarga nuestra aplicación Android.">
-<title>CINEFLIX — Tu universo, a tu manera</title>
+<meta name="theme-color" content="#0b0812">
+<meta name="description" content="CINEFLIX: descubre nuestra experiencia de entretenimiento y descarga la aplicación Android.">
+<title>CINEFLIX | Entra en otra dimensión</title>
 
 <style>
 :root {
-  --bg: #090817;
-  --panel: #131128;
-  --purple: #8b5cf6;
-  --cyan: #52e5ff;
-  --text: #f7f5ff;
-  --muted: #aaa7c2;
+  --bg: #0b0812;
+  --panel: #15101e;
+  --orange: #ff873c;
+  --pink: #d74cff;
+  --white: #fffaff;
+  --muted: #aaa0b8;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
+  color: var(--white);
   background: var(--bg);
-  color: var(--text);
-  font-family: Inter, system-ui, Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
-a { color: inherit; text-decoration: none; }
+a { text-decoration: none; color: inherit; }
 button, input { font: inherit; }
 
 header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  height: 76px;
+  padding: 0 7%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
-  padding: 17px 7%;
-  background: #090817eF;
+  gap: 15px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: #0b0812ed;
   border-bottom: 1px solid #ffffff12;
   backdrop-filter: blur(18px);
 }
 .logo {
-  font-size: 25px;
-  font-weight: 950;
-  letter-spacing: -1px;
+  font-weight: 1000;
+  font-size: 27px;
+  letter-spacing: -1.5px;
 }
-.logo span { color: var(--cyan); }
-nav { display: flex; gap: 25px; }
+.logo span { color: var(--orange); }
+nav { display: flex; gap: 26px; }
 nav a {
-  color: var(--muted);
+  color: #c6bdd2;
   font-size: 13px;
+  transition: color .2s;
 }
-nav a:hover { color: white; }
-.header-button {
-  border: 1px solid #8b5cf688;
-  padding: 10px 15px;
-  border-radius: 10px;
+nav a:hover { color: var(--orange); }
+.nav-cta {
+  padding: 11px 15px;
+  border: 1px solid #ff873c88;
+  border-radius: 8px;
   font-size: 12px;
   font-weight: 800;
 }
 
 .hero {
-  min-height: 580px;
+  min-height: 660px;
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
-  padding: 75px 8%;
+  padding: 80px 8%;
   background:
-    radial-gradient(ellipse at 75% 40%, #6734c74c, transparent 42%),
-    radial-gradient(ellipse at 95% 80%, #16b9d42b, transparent 35%),
-    linear-gradient(125deg, #090817, #100d2b 60%, #090817);
+    radial-gradient(ellipse at 77% 48%, #922cbb38, transparent 37%),
+    radial-gradient(ellipse at 94% 90%, #ff873c20, transparent 30%),
+    linear-gradient(120deg, #0b0812, #150b20 65%, #0b0812);
 }
-.hero::after {
+.hero:before {
   content: "";
   position: absolute;
-  width: 360px;
-  height: 360px;
-  right: 9%;
-  top: 100px;
-  border: 1px solid #a78bfa55;
+  width: 450px;
+  height: 450px;
+  right: 7%;
+  top: 90px;
+  border: 1px solid #ff873c66;
   border-radius: 50%;
-  box-shadow: 0 0 90px #8b5cf622, inset 0 0 80px #8b5cf622;
-  pointer-events: none;
+  box-shadow:
+    0 0 50px #ff873c22,
+    0 0 120px #d74cff22,
+    inset 0 0 70px #d74cff18;
+  animation: pulse 5s ease-in-out infinite alternate;
+}
+@keyframes pulse {
+  from { transform: scale(.96) rotate(-8deg); }
+  to { transform: scale(1.04) rotate(8deg); }
 }
 .hero-content {
   position: relative;
-  z-index: 1;
-  max-width: 620px;
+  z-index: 2;
+  width: min(100%, 650px);
 }
-.eyebrow {
+.kicker {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  border: 1px solid #ffffff20;
-  background: #ffffff08;
-  border-radius: 30px;
-  padding: 9px 14px;
-  color: #d4c6ff;
+  gap: 10px;
+  color: #ffbd91;
   font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  border: 1px solid #ff873c45;
+  background: #ff873c0c;
+  padding: 11px 15px;
+  border-radius: 50px;
 }
-.dot {
-  width: 7px;
-  height: 7px;
+.kicker i {
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: var(--cyan);
-  box-shadow: 0 0 12px var(--cyan);
+  background: var(--orange);
+  box-shadow: 0 0 15px var(--orange);
 }
 h1 {
-  margin: 27px 0 18px;
-  font-size: clamp(43px, 7vw, 78px);
-  line-height: .99;
+  margin: 28px 0 22px;
+  font-size: clamp(43px, 7.2vw, 82px);
+  line-height: .97;
   letter-spacing: -4px;
+  font-weight: 1000;
 }
-.gradient {
-  background: linear-gradient(90deg, #a78bfa, #52e5ff);
-  -webkit-background-clip: text;
-  background-clip: text;
+h1 span {
+  display: block;
+  background: linear-gradient(90deg, #ff873c, #ffcf82, #e15aff);
   color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
 }
-.hero p {
-  max-width: 470px;
-  color: var(--muted);
+.intro {
+  color: #bdb4c9;
   font-size: 16px;
   line-height: 1.8;
+  max-width: 460px;
 }
-.actions {
+.buttons {
   display: flex;
   flex-wrap: wrap;
   gap: 13px;
-  margin-top: 28px;
+  margin-top: 30px;
 }
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 9px;
-  border: 0;
+  gap: 10px;
+  padding: 16px 21px;
+  border-radius: 10px;
+  font-weight: 900;
+  font-size: 12px;
+  transition: .25s;
   cursor: pointer;
-  border-radius: 12px;
-  padding: 15px 20px;
-  font-size: 13px;
-  font-weight: 850;
-  transition: .2s;
 }
-.btn:hover { transform: translateY(-3px); }
-.primary {
-  color: #0b0920;
-  background: linear-gradient(110deg, #a78bfa, #52e5ff);
-  box-shadow: 0 8px 35px #8b5cf633;
+.btn:hover { transform: translateY(-4px); }
+.btn-main {
+  color: #210d13;
+  background: linear-gradient(100deg, #ff873c, #ffc06d);
+  box-shadow: 0 8px 35px #ff873c35;
 }
-.secondary {
+.btn-main:hover { box-shadow: 0 10px 45px #ff873c66; }
+.btn-alt {
   color: white;
-  background: #ffffff09;
-  border: 1px solid #ffffff26;
+  border: 1px solid #ffffff30;
+  background: #ffffff08;
 }
-.note {
-  margin-top: 17px;
-  color: #8985a8;
+.tiny {
+  color: #887e99;
   font-size: 11px;
+  margin-top: 19px;
 }
 
-.orbit-art {
+.portal-art {
   position: absolute;
-  width: 350px;
-  height: 350px;
-  right: 9%;
-  top: 115px;
-  z-index: 0;
+  z-index: 1;
+  right: 10%;
+  top: 145px;
+  width: 320px;
+  height: 370px;
   display: grid;
   place-items: center;
   pointer-events: none;
 }
-.orbit {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border: 1px solid #a78bfa66;
-  border-radius: 50%;
-  transform: rotate(-25deg) scaleY(.68);
-}
-.orbit.two {
-  transform: rotate(35deg) scaleY(.68);
-  border-color: #52e5ff55;
-}
 .portal {
-  width: 165px;
-  height: 220px;
-  border-radius: 90px;
+  width: 185px;
+  height: 270px;
+  border-radius: 50%;
+  transform: rotate(20deg);
+  border: 3px solid #ffb05c;
   background:
-    radial-gradient(ellipse at 50% 35%, #52e5ff99, transparent 30%),
-    linear-gradient(145deg, #8b5cf6, #181135 65%);
-  box-shadow: 0 0 80px #8b5cf655, inset 0 0 25px #ffffff33;
-  transform: rotate(12deg);
+    radial-gradient(ellipse at 45% 35%, #ffcf8780, transparent 24%),
+    radial-gradient(ellipse at 55% 60%, #d74cff55, transparent 55%),
+    #180d28;
+  box-shadow:
+    0 0 20px #ff873c,
+    0 0 65px #ff873c66,
+    0 0 120px #d74cff55,
+    inset 0 0 40px #d74cff55;
 }
-.portal::after {
+.portal:after {
   content: "CF";
   display: grid;
   place-items: center;
-  width: 100%;
   height: 100%;
-  color: #ffffffdd;
-  font-size: 48px;
-  font-weight: 950;
-  letter-spacing: -5px;
+  color: #fff1e9;
+  font-size: 58px;
+  font-weight: 1000;
+  letter-spacing: -7px;
+  text-shadow: 0 0 25px #ff873c;
+}
+.ring {
+  position: absolute;
+  width: 100%;
+  height: 130px;
+  border: 1px solid #e15aff99;
+  border-radius: 50%;
+  transform: rotate(-24deg);
+}
+.ring.r2 {
+  transform: rotate(45deg);
+  border-color: #ff873c88;
 }
 
 .section {
-  padding: 65px 7%;
+  padding: 70px 7%;
 }
-.section-head {
+.heading {
   display: flex;
-  align-items: end;
   justify-content: space-between;
+  align-items: end;
   gap: 20px;
-  margin-bottom: 25px;
+  margin-bottom: 28px;
 }
-.section h2 {
-  font-size: clamp(24px, 4vw, 34px);
+.heading h2 {
+  font-size: clamp(25px, 4vw, 36px);
+  margin: 0 0 9px;
   letter-spacing: -1px;
-  margin: 0 0 8px;
 }
-.subtext {
-  margin: 0;
+.heading p {
   color: var(--muted);
+  margin: 0;
   font-size: 13px;
   line-height: 1.7;
 }
 .search {
-  width: min(100%, 250px);
-  padding: 12px 14px;
+  width: 230px;
+  max-width: 100%;
   background: #ffffff08;
+  border: 1px solid #ffffff24;
+  border-radius: 9px;
   color: white;
-  border: 1px solid #ffffff20;
-  border-radius: 10px;
+  padding: 13px;
   outline: none;
 }
-.search:focus { border-color: var(--purple); }
+.search:focus { border-color: var(--pink); }
 
 .catalog {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 17px;
+  gap: 18px;
 }
-.movie {
-  min-width: 0;
-  overflow: hidden;
+.card {
   background: var(--panel);
-  border: 1px solid #ffffff10;
-  border-radius: 15px;
-  transition: .25s;
+  border: 1px solid #ffffff12;
+  border-radius: 13px;
+  overflow: hidden;
+  transition: transform .25s, border-color .25s;
 }
-.movie:hover {
-  transform: translateY(-5px);
-  border-color: #8b5cf677;
+.card:hover {
+  transform: translateY(-7px);
+  border-color: #d74cff99;
 }
-.poster {
+.art {
   aspect-ratio: 3 / 4;
-  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  overflow: hidden;
-  padding: 16px;
+  align-items: center;
   text-align: center;
+  padding: 15px;
+  position: relative;
+  overflow: hidden;
 }
-.poster::before {
+.art:before {
   content: "";
   position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 50% 38%, #ffffff20, transparent 55%);
+  width: 180px;
+  height: 180px;
+  border: 1px solid #ffffff44;
+  border-radius: 50%;
+  box-shadow: 0 0 45px #ffffff15, inset 0 0 45px #ffffff15;
 }
-.poster .symbol {
+.art .symbol {
   position: relative;
-  font-size: 62px;
-  filter: drop-shadow(0 0 20px #ffffff44);
+  font-size: 61px;
+  text-shadow: 0 0 25px #ffffff55;
 }
-.poster strong {
+.art strong {
   position: relative;
-  margin-top: 12px;
-  font-size: 19px;
+  margin-top: 16px;
+  font-size: 17px;
   letter-spacing: 2px;
 }
-.poster small {
+.art small {
   position: relative;
   margin-top: 7px;
   font-size: 9px;
-  letter-spacing: 2px;
-  opacity: .8;
+  letter-spacing: 1.5px;
 }
-.p1 { background: linear-gradient(145deg, #38206b, #10102b 70%); }
-.p2 { background: linear-gradient(145deg, #07516a, #11132d 70%); }
-.p3 { background: linear-gradient(145deg, #743b39, #1b102b 70%); }
-.p4 { background: linear-gradient(145deg, #3c5a39, #101b27 70%); }
-.movie-info { padding: 15px; }
-.movie-info h3 { font-size: 14px; margin: 0 0 7px; }
-.movie-info p {
+.art1 { background: linear-gradient(150deg, #812d9b, #1b102b 72%); }
+.art2 { background: linear-gradient(150deg, #07596a, #101326 72%); }
+.art3 { background: linear-gradient(150deg, #a14c25, #271126 72%); }
+.art4 { background: linear-gradient(150deg, #50358e, #131226 72%); }
+.card-info { padding: 16px; }
+.card-info h3 { margin: 0 0 8px; font-size: 14px; }
+.card-info p {
   margin: 0;
-  color: var(--muted);
   font-size: 11px;
+  color: var(--muted);
   line-height: 1.6;
 }
 .empty {
   display: none;
   color: var(--muted);
-  padding: 25px 0;
+  padding: 20px 0;
 }
 
-.download-panel {
-  margin: 15px 7% 75px;
-  padding: 42px;
-  border-radius: 23px;
-  border: 1px solid #a78bfa3d;
-  background:
-    radial-gradient(ellipse at 100% 0%, #52e5ff17, transparent 45%),
-    linear-gradient(115deg, #1b153b, #101025);
+.download-section {
+  margin: 10px 7% 75px;
+  padding: 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 25px;
+  border-radius: 20px;
+  border: 1px solid #ff873c44;
+  background:
+    radial-gradient(ellipse at 95% 10%, #d74cff25, transparent 42%),
+    linear-gradient(110deg, #21112b, #15101e);
 }
-.download-panel h2 {
-  margin: 0 0 12px;
-  font-size: clamp(25px, 4vw, 38px);
+.download-section h2 {
+  font-size: clamp(25px, 4vw, 39px);
+  margin: 17px 0 10px;
 }
-.download-panel p {
+.download-section p {
+  max-width: 510px;
   color: var(--muted);
-  line-height: 1.7;
   font-size: 13px;
-  max-width: 500px;
+  line-height: 1.8;
 }
-.download-panel .btn { flex-shrink: 0; }
-
+.download-section .btn { flex-shrink: 0; }
 footer {
+  text-align: center;
   padding: 30px 7%;
   border-top: 1px solid #ffffff12;
-  color: #8885a5;
+  color: #887e99;
   font-size: 12px;
-  line-height: 1.8;
-  text-align: center;
+  line-height: 1.9;
 }
-footer strong { color: #a78bfa; }
+footer b { color: var(--orange); }
 
-@media (max-width: 850px) {
+@media(max-width: 850px) {
   .catalog { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .orbit-art { right: -130px; opacity: .35; }
-  .hero::after { right: -130px; }
-  .download-panel { align-items: flex-start; flex-direction: column; }
+  .portal-art { right: -90px; opacity: .35; }
+  .hero:before { right: -100px; }
+  .download-section { flex-direction: column; align-items: flex-start; }
 }
-@media (max-width: 540px) {
-  header { padding: 15px 5%; }
-  .logo { font-size: 22px; }
+@media(max-width: 560px) {
+  header { height: 67px; padding: 0 5%; }
+  .logo { font-size: 23px; }
   nav { display: none; }
-  .header-button { font-size: 11px; padding: 9px 10px; }
-  .hero { padding: 70px 6%; min-height: 550px; }
-  h1 { letter-spacing: -2px; }
-  .hero p { font-size: 14px; }
-  .orbit-art { right: -220px; top: 160px; }
-  .section { padding: 45px 5%; }
-  .section-head { align-items: flex-start; flex-direction: column; }
+  .nav-cta { font-size: 10px; padding: 10px; }
+  .hero { min-height: 580px; padding: 65px 6%; }
+  h1 { letter-spacing: -2.5px; }
+  .intro { font-size: 14px; }
+  .portal-art { right: -220px; top: 170px; }
+  .heading { flex-direction: column; align-items: stretch; }
   .search { width: 100%; }
-  .download-panel { margin: 10px 5% 45px; padding: 26px; }
-  .download-panel .btn { width: 100%; }
+  .section { padding: 48px 5%; }
+  .catalog { gap: 11px; }
+  .card-info { padding: 12px; }
+  .art strong { font-size: 13px; }
+  .download-section { margin: 10px 5% 45px; padding: 25px; }
+  .download-section .btn { width: 100%; }
+}
+@media(prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
 }
 </style>
 </head>
@@ -375,155 +403,142 @@ footer strong { color: #a78bfa; }
   <a href="#" class="logo">CINE<span>FLIX</span></a>
   <nav>
     <a href="#">Inicio</a>
-    <a href="#explorar">Explorar</a>
-    <a href="#descarga">Aplicación</a>
+    <a href="#catalogo">Descubrir</a>
+    <a href="#aplicacion">Aplicación</a>
   </nav>
-  <a class="header-button" href="#descarga">OBTENER APK ↗</a>
+  <a class="nav-cta" href="#aplicacion">OBTENER APK ↗</a>
 </header>
 
 <main>
-  <section class="hero">
-    <div class="hero-content">
-      <div class="eyebrow"><span class="dot"></span> TU UNIVERSO DIGITAL</div>
-      <h1>OTRO NIVEL DE<br><span class="gradient">ENTRETENIMIENTO.</span></h1>
-      <p>
-        Explora una nueva experiencia visual con CINEFLIX.
-        Descubre nuestra página y consigue la aplicación
-        Android desde el enlace de descarga.
-      </p>
-      <div class="actions">
-        <a class="btn primary" href="#descarga">↓ DESCARGAR APK</a>
-        <a class="btn secondary" href="#explorar">✦ EXPLORAR</a>
-      </div>
-      <div class="note">ANDROID · DESCARGA EXTERNA · MEDIAFIRE</div>
-    </div>
-
-    <div class="orbit-art" aria-hidden="true">
-      <div class="orbit"></div>
-      <div class="orbit two"></div>
-      <div class="portal"></div>
-    </div>
-  </section>
-
-  <section class="section" id="explorar">
-    <div class="section-head">
-      <div>
-        <h2>Explora el universo</h2>
-        <p class="subtext">Una muestra visual para descubrir el estilo CINEFLIX.</p>
-      </div>
-      <input
-        class="search"
-        id="search"
-        type="search"
-        placeholder="Buscar colección..."
-        aria-label="Buscar colección"
-      >
-    </div>
-
-    <div class="catalog" id="catalog">
-      <article class="movie" data-name="dimensión oculta ciencia ficción">
-        <div class="poster p1">
-          <span class="symbol">◈</span>
-          <strong>DIMENSIÓN</strong>
-          <small>UN MUNDO DESCONOCIDO</small>
-        </div>
-        <div class="movie-info">
-          <h3>Dimensión oculta</h3>
-          <p>Ciencia ficción · Colección conceptual</p>
-        </div>
-      </article>
-
-      <article class="movie" data-name="zona azul aventura">
-        <div class="poster p2">
-          <span class="symbol">〰</span>
-          <strong>ZONA AZUL</strong>
-          <small>MÁS ALLÁ DEL HORIZONTE</small>
-        </div>
-        <div class="movie-info">
-          <h3>Zona azul</h3>
-          <p>Aventura · Colección conceptual</p>
-        </div>
-      </article>
-
-      <article class="movie" data-name="último eclipse drama">
-        <div class="poster p3">
-          <span class="symbol">☼</span>
-          <strong>ECLIPSE</strong>
-          <small>EL TIEMPO SE DETIENE</small>
-        </div>
-        <div class="movie-info">
-          <h3>Último eclipse</h3>
-          <p>Drama · Colección conceptual</p>
-        </div>
-      </article>
-
-      <article class="movie" data-name="bosque infinito misterio">
-        <div class="poster p4">
-          <span class="symbol">✳</span>
-          <strong>INFINITO</strong>
-          <small>EL SECRETO TE ESPERA</small>
-        </div>
-        <div class="movie-info">
-          <h3>Bosque infinito</h3>
-          <p>Misterio · Colección conceptual</p>
-        </div>
-      </article>
-    </div>
-
-    <p class="empty" id="empty">No se encontraron colecciones.</p>
-    <p class="subtext" style="margin-top:18px">
-      Las tarjetas son ilustrativas, no películas reales ni enlaces de reproducción.
+<section class="hero">
+  <div class="hero-content">
+    <div class="kicker"><i></i> EL FUTURO DEL ENTRETENIMIENTO</div>
+    <h1>ENTRA EN<br>OTRA <span>DIMENSIÓN.</span></h1>
+    <p class="intro">
+      Olvida lo de siempre. Descubre la experiencia CINEFLIX
+      con una identidad visual creada para quienes buscan
+      algo diferente.
     </p>
-  </section>
-
-  <section class="download-panel" id="descarga">
-    <div>
-      <div class="eyebrow"><span class="dot"></span> CINEFLIX PARA ANDROID</div>
-      <h2>Tu experiencia comienza aquí.</h2>
-      <p>
-        Descarga el archivo APK mediante MediaFire.
-        Comprueba la procedencia del archivo antes de instalarlo
-        y revisa los permisos que solicita la aplicación.
-      </p>
+    <div class="buttons">
+      <a class="btn btn-main" href="#aplicacion">↓ DESCARGAR APK</a>
+      <a class="btn btn-alt" href="#catalogo">✦ DESCUBRIR</a>
     </div>
-    <a
-      class="btn primary"
-      href="https://www.mediafire.com/file/oi509un5m5bm5dl/Cineflix_v1.4.0(11)_mod.apk/file"
-      target="_blank"
-      rel="noopener noreferrer"
-    >↓ DESCARGAR APK</a>
-  </section>
+    <div class="tiny">CINEFLIX PARA ANDROID · DESCARGA POR MEDIAFIRE</div>
+  </div>
+
+  <div class="portal-art" aria-hidden="true">
+    <div class="ring"></div>
+    <div class="ring r2"></div>
+    <div class="portal"></div>
+  </div>
+</section>
+
+<section class="section" id="catalogo">
+  <div class="heading">
+    <div>
+      <h2>Explora lo extraordinario<span style="color:#ff873c">.</span></h2>
+      <p>Un universo visual para descubrir.</p>
+    </div>
+    <input id="search" class="search" type="search"
+      placeholder="Buscar colección..." aria-label="Buscar colección">
+  </div>
+
+  <div class="catalog" id="cards">
+    <article class="card" data-search="portal dimensión ciencia ficción">
+      <div class="art art1">
+        <span class="symbol">◉</span>
+        <strong>EL PORTAL</strong>
+        <small>CRUZA EL LÍMITE</small>
+      </div>
+      <div class="card-info">
+        <h3>El portal</h3>
+        <p>Ciencia ficción · Arte conceptual</p>
+      </div>
+    </article>
+
+    <article class="card" data-search="zona azul aventura océano">
+      <div class="art art2">
+        <span class="symbol">〰</span>
+        <strong>ZONA AZUL</strong>
+        <small>UN MUNDO SIN FIN</small>
+      </div>
+      <div class="card-info">
+        <h3>Zona azul</h3>
+        <p>Aventura · Arte conceptual</p>
+      </div>
+    </article>
+
+    <article class="card" data-search="último eclipse misterio">
+      <div class="art art3">
+        <span class="symbol">☼</span>
+        <strong>ECLIPSE</strong>
+        <small>LA LUZ REGRESARÁ</small>
+      </div>
+      <div class="card-info">
+        <h3>Último eclipse</h3>
+        <p>Misterio · Arte conceptual</p>
+      </div>
+    </article>
+
+    <article class="card" data-search="universo infinito fantasía">
+      <div class="art art4">
+        <span class="symbol">✧</span>
+        <strong>INFINITO</strong>
+        <small>MÁS ALLÁ DE TODO</small>
+      </div>
+      <div class="card-info">
+        <h3>Universo infinito</h3>
+        <p>Fantasía · Arte conceptual</p>
+      </div>
+    </article>
+  </div>
+  <p id="empty" class="empty">No encontramos resultados.</p>
+  <p class="tiny">Las tarjetas son ilustraciones de ejemplo, no películas disponibles para reproducir.</p>
+</section>
+
+<section class="download-section" id="aplicacion">
+  <div>
+    <div class="kicker"><i></i> APLICACIÓN ANDROID</div>
+    <h2>El siguiente nivel te espera.</h2>
+    <p>
+      Descarga CINEFLIX desde el enlace de MediaFire.
+      Comprueba la seguridad y el origen del archivo
+      antes de instalarlo en tu dispositivo.
+    </p>
+  </div>
+  <a class="btn btn-main"
+    href="https://www.mediafire.com/file/oi509un5m5bm5dl/Cineflix_v1.4.0(11)_mod.apk/file"
+    target="_blank" rel="noopener noreferrer">
+    ↓ DESCARGAR CINEFLIX
+  </a>
+</section>
 </main>
 
 <footer>
-  <strong>CINEFLIX</strong> — Tu universo, a tu manera.<br>
-  Esta página facilita el acceso al enlace de descarga proporcionado.<br>
-  © 2026 CINEFLIX · Verifica la seguridad y los derechos de distribución del APK.
+  <b>CINEFLIX</b> · Entra en otra dimensión.<br>
+  Página de descarga independiente. Verifica los derechos
+  de distribución y la seguridad del APK.<br>
+  © 2026 CINEFLIX
 </footer>
 
 <script>
-(function () {
-  const search = document.getElementById("search");
-  const movies = Array.from(document.querySelectorAll(".movie"));
-  const empty = document.getElementById("empty");
+const search = document.getElementById("search");
+const cards = [...document.querySelectorAll(".card")];
+const empty = document.getElementById("empty");
 
-  search.addEventListener("input", function () {
-    const term = search.value
-      .trim()
-      .toLocaleLowerCase("es");
+search.addEventListener("input", () => {
+  const term = search.value.trim().toLocaleLowerCase("es");
+  let count = 0;
 
-    let visible = 0;
-
-    movies.forEach(function (movie) {
-      const name = movie.dataset.name.toLocaleLowerCase("es");
-      const match = name.includes(term);
-      movie.hidden = !match;
-      if (match) visible++;
-    });
-
-    empty.style.display = visible === 0 ? "block" : "none";
+  cards.forEach(card => {
+    const match = card.dataset.search
+      .toLocaleLowerCase("es").includes(term);
+    card.style.display = match ? "" : "none";
+    if (match) count++;
   });
-})();
+
+  empty.style.display = count ? "none" : "block";
+});
 </script>
 </body>
 </html>
