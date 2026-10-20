@@ -2,275 +2,109 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#090711">
-<meta name="description" content="Descarga CINEFLIX para Android.">
-<title>CINEFLIX — Descarga oficial</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09090f">
+  <title>CINEFLIX</title>
 
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#090711;
-  --orange:#ff8a3d;
-  --purple:#a855f7;
-  --white:#fff;
-  --muted:#aaa4b8;
-}
-html{scroll-behavior:smooth}
-body{
-  background:var(--bg);
-  color:var(--white);
-  font-family:Arial,Helvetica,sans-serif;
-  min-height:100vh;
-  overflow-x:hidden;
-}
-header{
-  height:76px;
-  padding:0 7%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  border-bottom:1px solid #ffffff13;
-  background:#090711eF;
-  position:relative;
-  z-index:2;
-}
-.logo{
-  font-size:27px;
-  font-weight:1000;
-  letter-spacing:-1.5px;
-}
-.logo span{color:var(--orange)}
-.status{
-  color:#d6c9e8;
-  font-size:11px;
-  letter-spacing:1.5px;
-}
-.hero{
-  min-height:calc(100vh - 76px);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:55px 22px 70px;
-  position:relative;
-  overflow:hidden;
-  background:
-    radial-gradient(ellipse at 50% 37%,#7d2f9b32,transparent 40%),
-    radial-gradient(ellipse at 15% 75%,#ff8a3d18,transparent 35%),
-    #090711;
-}
-.glow{
-  position:absolute;
-  width:390px;
-  height:390px;
-  border-radius:50%;
-  border:1px solid #a855f744;
-  box-shadow:0 0 80px #a855f720,inset 0 0 80px #a855f71a;
-  top:65px;
-  left:50%;
-  transform:translateX(-50%);
-  animation:pulse 4s ease-in-out infinite alternate;
-}
-@keyframes pulse{
-  from{transform:translateX(-50%) scale(.94);opacity:.55}
-  to{transform:translateX(-50%) scale(1.06);opacity:1}
-}
-.content{
-  max-width:690px;
-  position:relative;
-  z-index:1;
-}
-.app-icon{
-  width:108px;
-  height:108px;
-  margin:0 auto 25px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:30px;
-  background:linear-gradient(145deg,#ffad60,#ff713b 45%,#8b36d9);
-  box-shadow:0 0 45px #ff873c44, inset 0 1px 2px #ffffff88;
-  border:1px solid #ffffff45;
-  font-size:42px;
-  font-weight:1000;
-  letter-spacing:-4px;
-  transform:rotate(-5deg);
-}
-.app-icon span{transform:rotate(5deg)}
-.pill{
-  display:inline-flex;
-  align-items:center;
-  gap:9px;
-  border:1px solid #ffffff20;
-  border-radius:50px;
-  padding:10px 15px;
-  color:#e1d2f4;
-  font-size:10px;
-  font-weight:bold;
-  letter-spacing:2px;
-  background:#ffffff08;
-}
-.pill i{
-  width:7px;height:7px;
-  background:#67f3ba;
-  border-radius:50%;
-  box-shadow:0 0 12px #67f3ba;
-}
-h1{
-  margin:25px 0 17px;
-  font-size:clamp(46px,9vw,82px);
-  line-height:.98;
-  letter-spacing:-4px;
-  font-weight:1000;
-}
-h1 span{
-  display:block;
-  background:linear-gradient(90deg,#ffb56f,#ff873c,#c76bff);
-  color:transparent;
-  -webkit-background-clip:text;
-  background-clip:text;
-}
-.description{
-  max-width:480px;
-  margin:0 auto;
-  color:var(--muted);
-  font-size:16px;
-  line-height:1.8;
-}
-.download{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:13px;
-  max-width:350px;
-  width:100%;
-  min-height:60px;
-  margin:30px auto 0;
-  border-radius:12px;
-  color:#1d0d12;
-  background:linear-gradient(100deg,#ffb16b,#ff873c);
-  font-size:14px;
-  font-weight:900;
-  text-decoration:none;
-  box-shadow:0 8px 35px #ff873c38;
-  transition:transform .25s,box-shadow .25s;
-}
-.download:hover{
-  transform:translateY(-4px);
-  box-shadow:0 12px 45px #ff873c66;
-}
-.download .arrow{font-size:25px}
-.details{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:10px;
-  margin-top:20px;
-}
-.details span{
-  padding:9px 12px;
-  border:1px solid #ffffff14;
-  background:#ffffff06;
-  border-radius:8px;
-  color:#bdb4ca;
-  font-size:11px;
-}
-.divider{
-  width:55px;
-  height:3px;
-  margin:35px auto 20px;
-  background:linear-gradient(90deg,var(--orange),var(--purple));
-  border-radius:5px;
-}
-.footnote{
-  color:#766e85;
-  font-size:11px;
-  line-height:1.8;
-  max-width:460px;
-  margin:auto;
-}
-footer{
-  text-align:center;
-  padding:22px;
-  color:#777084;
-  border-top:1px solid #ffffff10;
-  font-size:11px;
-}
-footer b{color:var(--orange)}
-@media(max-width:500px){
-  header{height:65px;padding:0 5%}
-  .logo{font-size:23px}
-  .status{font-size:9px;letter-spacing:1px}
-  .hero{min-height:calc(100vh - 65px);padding:55px 20px}
-  .glow{width:300px;height:300px;top:85px}
-  h1{letter-spacing:-2px}
-  .description{font-size:14px}
-  .app-icon{width:94px;height:94px;border-radius:26px;font-size:37px}
-  .download{font-size:12px}
-}
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation:none!important;transition:none!important}
-}
-</style>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #09090f;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      padding: 16px;
+      text-align: center;
+      background: #111018;
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .logo span {
+      color: #ff304f;
+    }
+
+    iframe {
+      display: block;
+      width: 100%;
+      height: 75vh;
+      min-height: 450px;
+      border: 0;
+      background: #09090f;
+    }
+
+    .download {
+      text-align: center;
+      padding: 28px 18px 35px;
+      background: #15121c;
+    }
+
+    .download h2 {
+      margin: 0 0 10px;
+      font-size: 24px;
+    }
+
+    .download p {
+      color: #c4bdcc;
+      line-height: 1.6;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 15px 25px;
+      border-radius: 10px;
+      background: #ff304f;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer {
+      padding: 18px;
+      text-align: center;
+      color: #888;
+      font-size: 12px;
+    }
+  </style>
 </head>
 
 <body>
-<header>
-  <a class="logo" href="#" style="color:white;text-decoration:none">
-    CINE<span>FLIX</span>
-  </a>
-  <div class="status">APP PARA ANDROID</div>
-</header>
+  <header>
+    <div class="logo">CINE<span>FLIX</span></div>
+  </header>
 
-<main class="hero">
-  <div class="glow" aria-hidden="true"></div>
+  <!-- Intenta mostrar la web automáticamente -->
+  <iframe
+    src="https://cineflix.app/"
+    title="CINEFLIX Web"
+    allowfullscreen>
+  </iframe>
 
-  <section class="content">
-    <div class="app-icon" aria-label="Icono de CINEFLIX">
-      <span>CF</span>
-    </div>
-
-    <div class="pill"><i></i> TU ENTRETENIMIENTO COMIENZA AQUÍ</div>
-
-    <h1>DESCUBRE<br><span>CINEFLIX.</span></h1>
-
-    <p class="description">
-      Lleva tu experiencia de entretenimiento contigo.
-      Descarga la aplicación CINEFLIX para Android desde
-      nuestro enlace y descubre todo lo que tiene para ofrecer.
-    </p>
+  <section class="download">
+    <h2>Descargar CINEFLIX</h2>
+    <p>Descarga la aplicación para tu dispositivo Android.</p>
 
     <a
-      class="download"
+      class="button"
       href="https://www.mediafire.com/file/oi509un5m5bm5dl/Cineflix_v1.4.0(11)_mod.apk/file"
       target="_blank"
-      rel="noopener noreferrer"
-    >
-      <span class="arrow">↓</span>
-      <span>DESCARGAR APLICACIÓN APK</span>
+      rel="noopener noreferrer">
+      ⬇ DESCARGAR APLICACIÓN
     </a>
-
-    <div class="details">
-      <span>◈ ANDROID</span>
-      <span>↗ MEDIAFIRE</span>
-      <span>⬇ ARCHIVO APK</span>
-    </div>
-
-    <div class="divider"></div>
-
-    <p class="footnote">
-      Antes de instalar, verifica que el archivo sea seguro
-      y que su origen sea confiable. Android puede solicitar
-      autorización para instalar aplicaciones externas.
-    </p>
   </section>
-</main>
 
-<footer>
-  <b>CINEFLIX</b> · Página de descarga de la aplicación.<br>
-  © 2026 CINEFLIX
-</footer>
+  <footer>CINEFLIX · Web y aplicación</footer>
 </body>
 </html>
