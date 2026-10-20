@@ -1,110 +1,70 @@
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#09090f">
-  <title>CINEFLIX</title>
+<section class="download">
+  <h2>Descargar CINEFLIX</h2>
+  <p>Descarga la aplicación para tu dispositivo Android.</p>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+  <button id="downloadBtn" class="button" onclick="descargarApp()">
+    ⬇ DESCARGAR APLICACIÓN
+  </button>
 
-    body {
-      margin: 0;
-      background: #09090f;
-      color: white;
-      font-family: Arial, sans-serif;
-    }
+  <div id="loading" style="display:none; margin-top:22px;">
+    <div class="spinner"></div>
+    <p id="loadingText">Preparando descarga...</p>
+  </div>
+</section>
 
-    header {
-      padding: 16px;
-      text-align: center;
-      background: #111018;
-    }
+<style>
+  .button {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 10px;
+    background: #ff304f;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+  }
 
-    .logo {
-      font-size: 27px;
-      font-weight: 900;
-      letter-spacing: 2px;
-    }
+  .spinner {
+    width: 42px;
+    height: 42px;
+    margin: 0 auto 12px;
+    border: 4px solid #49303a;
+    border-top-color: #ff304f;
+    border-radius: 50%;
+    animation: girar .8s linear infinite;
+  }
 
-    .logo span {
-      color: #ff304f;
-    }
+  @keyframes girar {
+    to { transform: rotate(360deg); }
+  }
+</style>
 
-    iframe {
-      display: block;
-      width: 100%;
-      height: 75vh;
-      min-height: 450px;
-      border: 0;
-      background: #09090f;
-    }
+<script>
+  function descargarApp() {
+    const boton = document.getElementById("downloadBtn");
+    const loading = document.getElementById("loading");
+    const texto = document.getElementById("loadingText");
 
-    .download {
-      text-align: center;
-      padding: 28px 18px 35px;
-      background: #15121c;
-    }
+    if (boton.disabled) return;
 
-    .download h2 {
-      margin: 0 0 10px;
-      font-size: 24px;
-    }
+    boton.disabled = true;
+    boton.style.opacity = "0.6";
+    boton.textContent = "PROCESANDO...";
+    loading.style.display = "block";
+    texto.textContent = "Preparando descarga...";
 
-    .download p {
-      color: #c4bdcc;
-      line-height: 1.6;
-    }
+    setTimeout(function () {
+      texto.textContent = "Conectando con MediaFire...";
 
-    .button {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 15px 25px;
-      border-radius: 10px;
-      background: #ff304f;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
+      setTimeout(function () {
+        window.location.href =
+          "https://www.mediafire.com/file/oi509un5m5bm5dl/Cineflix_v1.4.0(11)_mod.apk/file";
+      }, 1200);
 
-    footer {
-      padding: 18px;
-      text-align: center;
-      color: #888;
-      font-size: 12px;
-    }
-  </style>
-</head>
-
-<body>
-  <header>
-    <div class="logo">CINE<span>FLIX</span></div>
-  </header>
-
-  <!-- Intenta mostrar la web automáticamente -->
-  <iframe
-    src="https://cineflix.app/"
-    title="CINEFLIX Web"
-    allowfullscreen>
-  </iframe>
-
-  <section class="download">
-    <h2>Descargar CINEFLIX</h2>
-    <p>Descarga la aplicación para tu dispositivo Android.</p>
-
-    <a
-      class="button"
-      href="https://www.mediafire.com/file/oi509un5m5bm5dl/Cineflix_v1.4.0(11)_mod.apk/file"
-      target="_blank"
-      rel="noopener noreferrer">
-      ⬇ DESCARGAR APLICACIÓN
-    </a>
-  </section>
-
-  <footer>CINEFLIX · Web y aplicación</footer>
-</body>
-</html>
+    }, 1500);
+  }
+</script>
